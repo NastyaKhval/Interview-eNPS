@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eNPS Interview 2025 — @ank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0A0A;
+            min-height: 100vh;
+            overflow: hidden;
+            color: #FFFFFF;
+            position: relative;
+        }
+        
+        /* Space dust canvas background */
+        #space-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .page {
+            display: none;
+            height: 100vh;
+            padding: 40px 40px 40px 40px;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .page-final.active {
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: rgba(31, 31, 31, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 56px 64px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border: 1px solid rgba(232, 240, 255, 0.1);
+            margin: 20px 0 40px 0;
+        }
+
+        .page-indicator {
+            position: absolute;
+            top: 28px;
+            right: 36px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: #E8F0FF;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+        }
+
+        /* Question header row - badge + title on same line */
+        .question-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        /* Planet ring badge container */
+        .question-number {
+            position: relative;
+            width: 56px;
+            height: 56px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Rotating outer ring */
+        .planet-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                #0F1BC5,
+                #007AFF,
+                #00BF56,
+                #007AFF,
+                #0F1BC5
+            );
+            padding: 3px;
+            animation: planetSpin 8s linear infinite;
+            box-shadow: 
+                0 0 20px rgba(0, 122, 255, 0.4),
+                0 0 40px rgba(0, 122, 255, 0.2),
+                inset 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Inner circle to create ring effect */
+        .planet-ring::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            background: #0A0A0A;
+            border-radius: 50%;
+        }
+
+        /* Static number inside */
+        .planet-num {
+            position: relative;
+            z-index: 2;
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #FFFFFF;
+            text-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(0, 122, 255, 0.5);
+        }
+
+        /* Planet ring rotation animation */
+        @keyframes planetSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Question text - now inline with badge */
+        .question-header .question-text {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .intro-badge {
+            display: inline-block;
+            background: #0F1BC5;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+            margin-top: 0;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #B6CDFF;
+            margin-bottom: 32px;
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .question-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #E8F0FF;
+            margin-bottom: 28px;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .answer-text {
+            font-size: 14px;
+            color: #D6D6D6;
+            line-height: 1.7;
+        }
+
+        .answer-text p {
+            margin-bottom: 16px;
+        }
+
+        .callout {
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.15), rgba(15, 27, 197, 0.1));
+            border-left: 6px solid #007AFF;
+            padding: 28px 32px;
+            margin: 28px 0;
+            border-radius: 0 16px 16px 0;
+            font-weight: 600;
+            color: #B6CDFF;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .nav-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 73, 44, 0.9);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 9999px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 73, 44, 0.3);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 90;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-btn-left {
+            left: max(20px, calc((100vw - 900px) / 2 - 72px));
+        }
+
+        .nav-btn-right {
+            right: max(20px, calc((100vw - 900px) / 2 - 72px));
+        }
+
+        .nav-btn svg {
+            animation: arrowBlink 2s ease-in-out infinite;
+        }
+
+        @keyframes arrowBlink {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.3;
+                transform: scale(0.9);
+            }
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 73, 44, 1);
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 6px 24px rgba(255, 73, 44, 0.45);
+        }
+
+        .nav-btn:hover svg {
+            animation: arrowPulse 0.8s ease-in-out infinite;
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1) translateX(0);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(1.15) translateX(2px);
+            }
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+            transform: translateY(-50%);
+        }
+
+        .nav-btn:disabled svg {
+            animation: none;
+        }
+
+        .nav-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: white;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007AFF, #00BF56);
+            transition: all 0.3s ease;
+            z-index: 100;
+            cursor: pointer;
+        }
+        
+        .progress-bar:hover {
+            height: 5px;
+            box-shadow: 0 2px 12px rgba(0, 122, 255, 0.4);
+        }
+
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            background: #cbd5e1;
+        }
+
+        .intro-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        /* Dark glass stat cards with blue accent */
+        .stat-card {
+            position: relative;
+            background: rgba(31, 31, 31, 0.6);
+            backdrop-filter: blur(12px);
+            color: white;
+            padding: 36px 24px;
+            padding-left: 28px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(232, 240, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Thin blue gradient accent on left edge */
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            bottom: 20%;
+            width: 3px;
+            background: linear-gradient(180deg, #007AFF, #0F1BC5);
+            border-radius: 0 2px 2px 0;
+            box-shadow: 0 0 12px rgba(0, 122, 255, 0.5);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(232, 240, 255, 0.2);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-card:hover::before {
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.7);
+        }
+
+        .stat-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: #FFFFFF;
+            text-shadow: 0 2px 12px rgba(0, 122, 255, 0.3);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(232, 240, 255, 0.8);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .table-data {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 28px 0;
+            font-size: 13px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .table-data th, .table-data td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(232, 240, 255, 0.1);
+        }
+
+        .table-data th {
+            background: linear-gradient(135deg, #0F1BC5 0%, #007AFF 100%);
+            font-weight: 600;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 11px;
+        }
+
+        .table-data th:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        .table-data th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+
+        .table-data tbody tr {
+            background: rgba(31, 31, 31, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .table-data tbody tr:nth-child(even) {
+            background: rgba(31, 31, 31, 0.6);
+        }
+
+        .table-data tbody tr:hover {
+            background: linear-gradient(90deg, rgba(0, 122, 255, 0.2), rgba(15, 27, 197, 0.15));
+            transform: translateX(2px);
+        }
+
+        .table-data tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-data td:last-child {
+            font-weight: 600;
+        }
+
+        .table-data tbody tr td:first-child {
+            color: #E8F0FF;
+            font-weight: 600;
+        }
+
+        .intro-text {
+            font-size: 14px;
+            color: #D6D6D6;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Intro page: left-align text block */
+        .page[data-page="0"] .intro-text {
+            text-align: left;
+            max-width: none;
+            margin: 0;
+        }
+
+        /* Subtitle in intro header */
+        .intro-header-content .subtitle {
+            text-align: left;
+            margin-bottom: 0;
+        }
+        
+        /* Title spacing in intro header */
+        .intro-header-content h1 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+
+        .highlight {
+            color: #FFF16B;
+            font-weight: 700;
+        }
+
+        /* Highlight in table - styled as badge */
+        .table-data td.highlight {
+            background: linear-gradient(135deg, rgba(255, 73, 44, 0.1), rgba(255, 73, 44, 0.15));
+            color: #FF492C;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 6px;
+            display: inline-block;
+            min-width: 60px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(255, 73, 44, 0.2);
+        }
+
+        /* Line chart - compact version */
+        .line-chart {
+            position: relative;
+            height: 160px;
+            margin: 24px 0 32px 0;
+            padding: 16px 16px 32px 50px;
+            background: linear-gradient(135deg, rgba(31, 31, 31, 0.4) 0%, rgba(31, 31, 31, 0.6) 100%);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(232, 240, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .line-chart-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #E8F0FF;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .line-chart-title::before {
+            content: '';
+            width: 3px;
+            height: 14px;
+            background: linear-gradient(135deg, #0F1BC5, #007AFF);
+            border-radius: 2px;
+        }
+
+        .chart-grid {
+            position: relative;
+            height: 120px;
+            border-left: 1px solid rgba(232, 240, 255, 0.1);
+            border-bottom: 1px solid rgba(232, 240, 255, 0.1);
+        }
+
+        .y-axis-labels {
+            position: absolute;
+            left: -42px;
+            top: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 9px;
+            color: rgba(182, 205, 255, 0.6);
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+        }
+
+        .line-path {
+            position: relative;
+            height: 100%;
+        }
+
+        .line-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .data-points {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Smaller data points, highlight last point */
+        .data-point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #1F1F1F;
+            border: 2px solid #007AFF;
+            box-shadow: 0 2px 6px rgba(0, 122, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .data-point:hover {
+            transform: scale(1.3);
+            opacity: 1;
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.6);
+        }
+
+        /* Highlight last point (2025) - larger and more prominent */
+        .data-point.negative {
+            width: 14px;
+            height: 14px;
+            border-width: 3px;
+            border-color: #FF492C;
+            box-shadow: 0 3px 12px rgba(255, 73, 44, 0.5);
+            opacity: 1;
+        }
+
+        .data-point.negative:hover {
+            box-shadow: 0 6px 20px rgba(255, 73, 44, 0.7);
+        }
+
+        /* Smaller, tighter data labels */
+        .data-label {
+            position: absolute;
+            font-size: 10px;
+            font-weight: 700;
+            color: #E8F0FF;
+            transform: translate(-50%, -22px);
+            font-family: 'IBM Plex Mono', monospace;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .data-label.negative {
+            color: #FF492C;
+            font-size: 11px;
+        }
+
+        /* Compact x-axis labels */
+        .x-axis-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            padding-left: 50px;
+            padding-right: 16px;
+        }
+
+        .x-label {
+            font-size: 10px;
+            color: rgba(182, 205, 255, 0.7);
+            font-weight: 500;
+        }
+
+        /* Avatar wrapper with label */
+        .avatar-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(0, 122, 255, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 122, 255, 0.3);
+        }
+
+
+        /* Intro header - avatar and content in row */
+        .intro-header {
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+            margin-bottom: 32px;
+        }
+
+        .intro-header-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Code/Prompt block */
+        .prompt-block {
+            background: #1F1F1F;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin: 24px 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #D6D6D6;
+            overflow-x: auto;
+        }
+
+        .prompt-block .section-title {
+            color: #B6CDFF;
+            font-weight: 600;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        .prompt-block .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .prompt-block ul {
+            margin-left: 16px;
+            color: #D6D6D6;
+        }
+
+        .prompt-block li {
+            margin-bottom: 4px;
+        }
+
+        /* Charts - compact version */
+        .chart-container {
+            position: relative;
+            margin: 24px 0;
+            padding: 20px 24px;
+            background: rgba(31, 31, 31, 0.4);
+            border-radius: 16px;
+            border: 1px solid rgba(232, 240, 255, 0.1);
+            backdrop-filter: blur(8px);
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .chart-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #E8F0FF;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .chart-title::before {
+            content: '';
+            width: 3px;
+            height: 14px;
+            background: linear-gradient(135deg, #0F1BC5, #007AFF);
+            border-radius: 2px;
+        }
+
+        /* Metric cards row */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #1F1F1F 0%, #0A0A0A 100%);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            color: white;
+        }
+
+        .metric-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-value.down {
+            color: #FF492C;
+        }
+
+        .metric-change {
+            font-size: 12px;
+            color: #FF492C;
+            margin-left: 4px;
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: #D6D6D6;
+            font-weight: 600;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .metric-subtitle {
+            font-size: 10px;
+            color: #D6D6D6;
+            margin-top: 4px;
+        }
+
+        /* Bar chart */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar-label {
+            width: 80px;
+            font-size: 12px;
+            color: #B6CDFF;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 32px;
+            background: rgba(232, 240, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            transition: width 0.5s ease;
+        }
+
+        .bar-fill.blue {
+            background: linear-gradient(90deg, #0F1BC5, #007AFF);
+        }
+
+        .bar-fill.green {
+            background: linear-gradient(90deg, #00BF56, #00d68f);
+        }
+
+        .bar-fill.orange {
+            background: linear-gradient(90deg, #FF492C, #ff7b5c);
+        }
+
+        .bar-fill.purple {
+            background: linear-gradient(90deg, #a870c8, #D098F3);
+        }
+
+        /* Comparison chart - compact version with subtle baseline */
+        .comparison-chart {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            position: relative;
+            padding-top: 8px;
+        }
+        
+        /* Subtle horizontal grid lines */
+        .comparison-chart::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 8px;
+            bottom: 32px;
+            background: 
+                linear-gradient(to right, transparent 0%, rgba(232, 240, 255, 0.04) 10%, rgba(232, 240, 255, 0.04) 90%, transparent 100%) 0 0%,
+                linear-gradient(to right, transparent 0%, rgba(232, 240, 255, 0.04) 10%, rgba(232, 240, 255, 0.04) 90%, transparent 100%) 0 25%,
+                linear-gradient(to right, transparent 0%, rgba(232, 240, 255, 0.04) 10%, rgba(232, 240, 255, 0.04) 90%, transparent 100%) 0 50%,
+                linear-gradient(to right, transparent 0%, rgba(232, 240, 255, 0.04) 10%, rgba(232, 240, 255, 0.04) 90%, transparent 100%) 0 75%;
+            background-size: 100% 1px;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .comparison-item {
+            text-align: center;
+            padding: 0 8px;
+            position: relative;
+        }
+
+        /* Subtle separator between groups */
+        .comparison-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 10%;
+            bottom: 20%;
+            width: 1px;
+            background: rgba(232, 240, 255, 0.08);
+        }
+
+        .comparison-bars {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 6px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .comp-bar {
+            width: 45px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            transition: height 0.5s ease, transform 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .comp-bar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Pay - Blue gradient */
+        .comparison-item:nth-child(1) .comp-bar.y2025 {
+            background: linear-gradient(180deg, #007AFF, #0F1BC5);
+        }
+
+        .comparison-item:nth-child(1) .comp-bar.y2024 {
+            background: linear-gradient(180deg, #B6CDFF, #90b3e8);
+        }
+
+        /* Tasks - Green gradient */
+        .comparison-item:nth-child(2) .comp-bar.y2025 {
+            background: linear-gradient(180deg, #00BF56, #00a049);
+        }
+
+        .comparison-item:nth-child(2) .comp-bar.y2024 {
+            background: linear-gradient(180deg, #8fd9b0, #6bc99a);
+        }
+
+        /* Growth - Purple gradient */
+        .comparison-item:nth-child(3) .comp-bar.y2025 {
+            background: linear-gradient(180deg, #D098F3, #a870c8);
+        }
+
+        .comparison-item:nth-child(3) .comp-bar.y2024 {
+            background: linear-gradient(180deg, #EDD4FA, #D098F3);
+        }
+
+        /* Process - Orange gradient */
+        .comparison-item:nth-child(4) .comp-bar.y2025 {
+            background: linear-gradient(180deg, #FFBF42, #ff9f1c);
+        }
+
+        .comparison-item:nth-child(4) .comp-bar.y2024 {
+            background: linear-gradient(180deg, #ffd98a, #ffc96e);
+        }
+
+        .comparison-label {
+            font-size: 11px;
+            color: #B6CDFF;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Legend in top-right corner - inline */
+        .chart-legend {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: rgba(182, 205, 255, 0.9);
+            z-index: 10;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .legend-dot.blue {
+            background: linear-gradient(90deg, #007AFF 0%, #00BF56 33%, #D098F3 66%, #FFBF42 100%);
+        }
+        .legend-dot.gray {
+            background: linear-gradient(90deg, #B6CDFF 0%, #8fd9b0 33%, #EDD4FA 66%, #ffd98a 100%);
+        }
+
+        /* Progress bar chart - refined space theme */
+        .progress-chart {
+            display: flex;
+            align-items: stretch;
+            gap: 2px;
+            height: 48px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 16px 0 12px 0;
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            transition: flex 0.5s ease, filter 0.3s ease;
+            position: relative;
+        }
+
+        .progress-segment:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Clear distinction between segments - blue family with contrast */
+        .progress-segment.high { 
+            background: linear-gradient(135deg, #007AFF 0%, #0F1BC5 100%);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                0 0 20px rgba(0, 122, 255, 0.3);
+        }
+        
+        .progress-segment.med { 
+            background: linear-gradient(135deg, #4A5B7D 0%, #2E3A52 100%);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 0 10px rgba(74, 91, 125, 0.2);
+            opacity: 0.85;
+        }
+        
+        .progress-segment.low { 
+            background: linear-gradient(135deg, #2A2F3D 0%, #1A1E28 100%);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 0 8px rgba(0, 0, 0, 0.3);
+            opacity: 0.7;
+        }
+
+        /* Labels - compact legend style */
+        .progress-labels {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .progress-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: rgba(182, 205, 255, 0.9);
+        }
+
+        .progress-label .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Horizontal bar chart */
+        .h-bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .h-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .h-bar-label {
+            width: 140px;
+            font-size: 12px;
+            color: #B6CDFF;
+            flex-shrink: 0;
+        }
+
+        .h-bar-track {
+            flex: 1;
+            height: 24px;
+            background: rgba(232, 240, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .h-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Space Planets Bubble Chart */
+        .bubble-chart {
+            position: relative;
+            height: 380px;
+            background: transparent;
+            overflow: visible;
+            padding-bottom: 40px;
+        }
+
+        /* Planet sphere with 3D effect */
+        /* Real Planet Texture - Circular masked astronomy image */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            cursor: default;
+            overflow: hidden;
+            /* Perfect circular crop for planet images */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            /* Prevent image stretching */
+            background-attachment: scroll;
+        }
+
+        /* Dark overlay for number readability on real textures */
+        .bubble::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: 
+                radial-gradient(
+                    circle at center,
+                    rgba(0, 0, 0, 0.25) 0%,
+                    rgba(0, 0, 0, 0.4) 100%
+                ),
+                radial-gradient(
+                    circle at 50% 50%,
+                    transparent 0%,
+                    transparent 30%,
+                    rgba(0, 0, 0, 0.2) 100%
+                );
+            z-index: 1;
+            pointer-events: none;
+            mix-blend-mode: multiply;
+        }
+
+        /* Subtle atmospheric rim - minimal glow */
+        .bubble::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle at center,
+                transparent 48%,
+                rgba(255, 255, 255, 0.15) 49%,
+                transparent 51%
+            );
+            opacity: 0.6;
+            filter: blur(2px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bubble:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        
+        .bubble.green:hover {
+            filter: brightness(0.82) saturate(0.9) contrast(1.08) hue-rotate(-5deg);
+        }
+        
+        .bubble.red:hover {
+            filter: brightness(0.78) saturate(0.85) contrast(1.12) hue-rotate(5deg);
+        }
+
+        /* Depth variation - larger planets closer (sharper) */
+        .bubble[style*="width: 170px"],
+        .bubble[style*="width: 130px"] {
+            box-shadow: 
+                0 14px 50px rgba(0, 0, 0, 0.6),
+                inset 0 0 80px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Medium planets */
+        .bubble[style*="width: 100px"],
+        .bubble[style*="width: 102px"],
+        .bubble[style*="width: 92px"],
+        .bubble[style*="width: 84px"] {
+            box-shadow: 
+                0 10px 35px rgba(0, 0, 0, 0.55),
+                inset 0 0 60px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Smaller planets farther (softer shadows, slight blur) */
+        .bubble[style*="width: 44px"],
+        .bubble[style*="width: 50px"],
+        .bubble[style*="width: 56px"],
+        .bubble[style*="width: 68px"] {
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(0, 0, 0, 0.3);
+            filter: brightness(0.88) blur(0.4px);
+            opacity: 0.92;
+        }
+
+        /* Number stays INSIDE the planet - maximum contrast on real texture */
+        .bubble-value {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            line-height: 1;
+            color: #FFFFFF;
+            text-shadow: 
+                0 0 20px rgba(0, 0, 0, 0.9),
+                0 0 10px rgba(0, 0, 0, 0.9),
+                0 3px 8px rgba(0, 0, 0, 0.8),
+                0 1px 2px rgba(0, 0, 0, 1),
+                0 0 30px rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+        }
+
+        /* Label as caption - floating text below planet */
+        .bubble-label {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 18px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(232, 240, 255, 0.9);
+            text-align: center;
+            line-height: 1.4;
+            max-width: 110px;
+            padding: 0;
+            background: none;
+            border-radius: 0;
+            backdrop-filter: none;
+            text-shadow: 
+                0 1px 3px rgba(0, 0, 0, 0.8),
+                0 0 8px rgba(0, 0, 0, 0.6);
+            box-shadow: none;
+            pointer-events: none;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow: visible;
+            z-index: 100;
+            display: block;
+            letter-spacing: 0.02em;
+        }
+
+        /* Subtle leader line (shown only when label is repositioned due to collision) */
+        .bubble-label::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 12px;
+            background: linear-gradient(to top, rgba(182, 205, 255, 0.25), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .bubble-label.shifted::before {
+            opacity: 1;
+        }
+
+        /* 
+        PLANET TEXTURE IMAGES - Replace with your own NASA/ESA public domain images
+        
+        Recommended sources:
+        - NASA Image Gallery: https://images.nasa.gov/
+        - ESA Hubble: https://esahubble.org/images/
+        - USGS Astrogeology: https://astrogeology.usgs.gov/
+        
+        For best results:
+        - Use high-resolution planet images (at least 1000x1000px)
+        - Prefer darker, calmer textures (night side or desaturated)
+        - Compress images (WebP format, ~100-200KB each)
+        - Host images in same directory as HTML or use CDN
+        
+        Example real planet suggestions:
+        - Green/Value bubbles: Earth (blue marble), Neptune, Uranus
+        - Red/Improvement bubbles: Mars, Venus (infrared), Io (Jupiter moon)
+        */
+
+        /* Green/Blue Planet (Value) - Earth/Neptune-like texture */
+        .bubble.green {
+            /* Fallback gradient if image fails to load */
+            background: radial-gradient(
+                ellipse 55% 50% at 30% 25%,
+                #5A9A8A 0%,
+                #3A7A6A 40%,
+                #2A5A4A 70%,
+                #1A3A2A 100%
+            );
+            background-image: url('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=800&q=80');
+            filter: brightness(0.72) saturate(0.8) contrast(1.08) hue-rotate(-5deg);
+        }
+
+        .bubble.green::after {
+            background: radial-gradient(
+                circle at center,
+                transparent 48%,
+                rgba(80, 150, 200, 0.25) 49%,
+                transparent 51%
+            );
+        }
+
+        /* Red/Warm Planet (Improvement) - Mars/Venus-like texture */
+        .bubble.red {
+            /* Fallback gradient if image fails to load */
+            background: radial-gradient(
+                ellipse 55% 50% at 30% 25%,
+                #B87060 0%,
+                #985040 40%,
+                #783030 70%,
+                #581818 100%
+            );
+            background-image: url('https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?w=800&q=80');
+            filter: brightness(0.68) saturate(0.75) contrast(1.12) hue-rotate(5deg);
+        }
+
+        .bubble.red::after {
+            background: radial-gradient(
+                circle at center,
+                transparent 48%,
+                rgba(200, 120, 90, 0.25) 49%,
+                transparent 51%
+            );
+        }
+
+        /* Optional: Individual planet customization via inline background-image */
+        .bubble[style*="background-image"] {
+            /* Inline background-image will override class defaults */
+        }
+
+        /* Editorial Comparison Table */
+        .comparison-table {
+            margin: 20px 0;
+        }
+
+        .comparison-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .comparison-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 0 0 14px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(232, 240, 255, 0.15);
+        }
+
+        .value-column .column-title {
+            color: #007AFF;
+        }
+
+        .improvement-column .column-title {
+            color: #FF492C;
+        }
+
+        .comparison-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .comparison-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 4px 0;
+            transition: all 0.2s ease;
+        }
+
+        .comparison-row:hover {
+            transform: translateX(4px);
+        }
+
+        .row-bullet {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .value-column .row-bullet {
+            background: #007AFF;
+            box-shadow: 0 0 8px rgba(0, 122, 255, 0.4);
+        }
+
+        .improvement-column .row-bullet {
+            background: #FF492C;
+            box-shadow: 0 0 8px rgba(255, 73, 44, 0.4);
+        }
+
+        .row-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(232, 240, 255, 0.95);
+            flex: 1;
+            letter-spacing: 0.01em;
+        }
+
+        .row-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 16px;
+            font-weight: 600;
+            margin-left: auto;
+            min-width: 32px;
+            text-align: right;
+        }
+
+        .value-column .row-value {
+            color: #007AFF;
+        }
+
+        .improvement-column .row-value {
+            color: #FF492C;
+        }
+
+        /* Responsive table layout */
+        @media (max-width: 768px) {
+            .comparison-columns {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            
+            .column-title {
+                font-size: 14px;
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+            }
+            
+            .comparison-list {
+                gap: 3px;
+            }
+            
+            .comparison-row {
+                padding: 3px 0;
+            }
+            
+            .row-label {
+                font-size: 14px;
+            }
+            
+            .row-value {
+                font-size: 15px;
+            }
+        }
+
+        /* Vertical bar chart for departments - elegant space theme */
+        .v-bar-chart {
+            position: relative;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: stretch;
+            height: 240px;
+            gap: 6px;
+            padding: 15px 20px 15px 50px;
+            border-left: 1px solid rgba(232, 240, 255, 0.08);
+            border-bottom: 1px solid rgba(232, 240, 255, 0.08);
+            background: transparent;
+        }
+
+        /* Grid lines for scale - subtle and thin */
+        .v-bar-chart::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            bottom: 15px;
+            right: 20px;
+            top: 15px;
+            background: 
+                linear-gradient(to right, rgba(232, 240, 255, 0.06) 1px, transparent 1px) 0 0%,
+                linear-gradient(to right, rgba(232, 240, 255, 0.06) 1px, transparent 1px) 0 25%,
+                linear-gradient(to right, rgba(232, 240, 255, 0.06) 1px, transparent 1px) 0 50%,
+                linear-gradient(to right, rgba(232, 240, 255, 0.06) 1px, transparent 1px) 0 75%;
+            background-size: 100% 1px;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Y-axis labels - muted gray */
+        .v-bar-y-labels {
+            position: absolute;
+            left: 10px;
+            bottom: 15px;
+            top: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 10px;
+            color: rgba(182, 205, 255, 0.5);
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 400;
+            z-index: 1;
+            line-height: 1;
+        }
+
+        .v-bar-y-labels span {
+            transform: translateY(-50%);
+        }
+
+        .v-bar-y-labels span:first-child {
+            transform: translateY(0);
+        }
+
+        .v-bar-y-labels span:last-child {
+            transform: translateY(-100%);
+        }
+
+        /* Bar container */
+        .v-bar-item {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            min-width: 0;
+            z-index: 2;
+        }
+
+        /* Bar column - rounded with elegant glow */
+        .v-bar-column {
+            position: relative;
+            width: 100%;
+            max-width: 48px;
+            min-height: 20px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 0 16px rgba(0, 122, 255, 0.15),
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            opacity: 0.92;
+        }
+
+        /* Value above bar */
+        .v-bar-value {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 700;
+            color: #E8F0FF;
+            line-height: 1;
+            white-space: nowrap;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+        }
+
+        .v-bar-column:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 0 24px rgba(0, 122, 255, 0.3),
+                0 6px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            opacity: 1;
+            filter: brightness(1.08);
+        }
+
+        /* Bar label inside bar */
+        .v-bar-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            white-space: nowrap;
+            font-size: 8px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            line-height: 1;
+        }
+
+        /* Bar intensity shades — elegant vertical gradients (top brighter, bottom darker) */
+        .bar-shade-1 { 
+            background: linear-gradient(180deg, rgba(21, 37, 204, 0.85) 0%, rgba(15, 27, 197, 0.75) 100%); 
+        }
+        .bar-shade-2 { 
+            background: linear-gradient(180deg, rgba(20, 56, 212, 0.85) 0%, rgba(14, 46, 204, 0.75) 100%); 
+        }
+        .bar-shade-3 { 
+            background: linear-gradient(180deg, rgba(19, 75, 220, 0.85) 0%, rgba(13, 64, 212, 0.75) 100%); 
+        }
+        .bar-shade-4 { 
+            background: linear-gradient(180deg, rgba(18, 94, 228, 0.85) 0%, rgba(12, 82, 220, 0.75) 100%); 
+        }
+        .bar-shade-5 { 
+            background: linear-gradient(180deg, rgba(17, 112, 236, 0.85) 0%, rgba(11, 100, 228, 0.75) 100%); 
+        }
+        /* Vendor bar - highlighted with stronger glow and full opacity */
+        .bar-shade-6 { 
+            background: linear-gradient(180deg, rgba(13, 132, 255, 1) 0%, rgba(0, 122, 255, 0.95) 100%);
+            box-shadow: 
+                0 0 24px rgba(0, 122, 255, 0.4),
+                0 4px 16px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            opacity: 1;
+        }
+        .bar-shade-7 { 
+            background: linear-gradient(180deg, rgba(42, 146, 255, 0.85) 0%, rgba(26, 136, 255, 0.75) 100%); 
+        }
+        .bar-shade-8 { 
+            background: linear-gradient(180deg, rgba(61, 160, 255, 0.85) 0%, rgba(51, 150, 255, 0.75) 100%); 
+        }
+        
+        /* Vendor bar hover - even more prominent */
+        .bar-shade-6:hover {
+            box-shadow: 
+                0 0 32px rgba(0, 122, 255, 0.6),
+                0 8px 24px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        /* Two column charts */
+        /* Legacy grid for old chart layout - kept for compatibility */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Dark glass panel for charts */
+        .chart-box {
+            background: rgba(31, 31, 31, 0.5);
+            border-radius: 16px;
+            padding: 28px;
+            padding-bottom: 60px;
+            overflow: visible;
+            border: 1px solid rgba(232, 240, 255, 0.12);
+            backdrop-filter: blur(8px);
+            box-shadow: 
+                0 4px 24px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .chart-box-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #E8F0FF;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .chart-box-title::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(135deg, #0F1BC5, #007AFF);
+            border-radius: 2px;
+        }
+
+        /* Language switcher - top-right corner */
+        .lang-switch {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            display: flex;
+            gap: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 2px solid rgba(232, 240, 255, 0.2);
+            width: fit-content;
+            z-index: 10;
+        }
+
+        .lang-btn {
+            padding: 8px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: transparent;
+            color: #B6CDFF;
+        }
+
+        .lang-btn.active {
+            background: #007AFF;
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(232, 240, 255, 0.1);
+            color: #E8F0FF;
+        }
+
+        /* Final Page - Minimal & Atmospheric */
+        .page-final {
+            padding: 40px;
+        }
+
+        .final-content {
+            text-align: center;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .final-text {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .final-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin: 0;
+            text-shadow: 0 2px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        .final-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(182, 205, 255, 0.85);
+            line-height: 1.8;
+            margin: 0;
+            letter-spacing: 0.01em;
+        }
+
+        /* Cosmic Button */
+        .cosmic-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 48px;
+            background: transparent;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            text-decoration: none;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .cosmic-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(135deg, #007AFF, #00BF56);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.6;
+            transition: opacity 0.4s ease;
+        }
+
+        .button-glow {
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle at center, rgba(0, 122, 255, 0.15), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .button-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(232, 240, 255, 0.9);
+            letter-spacing: 0.03em;
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+
+        .cosmic-button:hover::before {
+            opacity: 1;
+            background: linear-gradient(135deg, #007AFF, #00BF56);
+        }
+
+        .cosmic-button:hover .button-glow {
+            opacity: 1;
+        }
+
+        .cosmic-button:hover .button-text {
+            color: #FFFFFF;
+            text-shadow: 0 0 12px rgba(0, 122, 255, 0.5);
+        }
+
+        /* Language visibility */
+        .lang-ru { display: none; }
+        body.ru .lang-en { display: none; }
+        body.ru .lang-ru { display: block; }
+
+        @media (max-width: 768px) {
+            .card { padding: 32px 24px; }
+            .intro-stats, .metrics-row { grid-template-columns: 1fr; }
+            .comparison-chart { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 4px;
+            }
+            
+            .comparison-bars {
+                height: 90px;
+            }
+            
+            .comp-bar {
+                width: 38px;
+            }
+            
+            .chart-legend {
+                position: static;
+                justify-content: center;
+                margin-top: 12px;
+            }
+            .question-text { font-size: 18px; }
+            h1 { font-size: 26px; }
+            .stat-number { font-size: 32px; }
+            /* Navigation buttons move to bottom on mobile */
+            .nav-btn {
+                top: auto;
+                bottom: 30px;
+                transform: translateY(0);
+                width: 54px;
+                height: 54px;
+            }
+            
+            .nav-btn svg {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .nav-btn-left {
+                left: 20px;
+            }
+            
+            .nav-btn-right {
+                right: 20px;
+            }
+            
+            .nav-btn:hover {
+                transform: scale(1.08);
+            }
+            
+            .nav-btn:disabled {
+                transform: none;
+            }
+            
+            .page {
+                padding: 20px 20px 110px 20px;
+            }
+            
+            /* Intro header stacks on mobile */
+            .intro-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+                margin-top: 40px;
+            }
+            
+            .avatar-wrapper {
+                width: 90px;
+            }
+            
+            .avatar {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .intro-header-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            /* Language switcher stays in top-right on mobile */
+            .lang-switch {
+                top: 20px;
+                right: 20px;
+            }
+            
+            /* Smaller planet badge on mobile */
+            .question-number {
+                width: 48px;
+                height: 48px;
+            }
+            
+            .planet-num {
+                font-size: 20px;
+            }
+            
+            .question-header {
+                gap: 14px;
+            }
+            
+            /* Final page mobile adjustments */
+            .page-final {
+                padding: 20px;
+            }
+            
+            .final-title {
+                font-size: 26px;
+            }
+            
+            .final-subtitle {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+            
+            .final-text {
+                gap: 24px;
+            }
+            
+            .final-content {
+                gap: 40px;
+            }
+            
+            .cosmic-button {
+                padding: 14px 36px;
+            }
+            
+            .button-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Space dust canvas background -->
+    <canvas id="space-canvas"></canvas>
+    
+    <div class="progress-bar" id="progress"></div>
+
+    <!-- Page 0: Intro -->
+    <div class="page active" data-page="0">
+        <div class="card">
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                <button class="lang-btn" onclick="switchLang('ru')">RU</button>
+            </div>
+            <div class="intro-header">
+                <div class="avatar-wrapper">
+                    <img src="ank_photo.png" alt="@ank" class="avatar">
+                </div>
+                <div class="intro-header-content">
+                    <h1 class="lang-en">Interview with @ank</h1>
+                    <h1 class="lang-ru">Интервью с @ank</h1>
+                    <p class="subtitle lang-en">Nastya @ank analyzes 115 responses about working at the company: honest numbers and what they mean</p>
+                    <p class="subtitle lang-ru">Настя @ank анализирует 115 ответов о том, как работается в компании: честные числа и что они значат</p>
+                </div>
+            </div>
+
+            <div class="intro-stats">
+                <div class="stat-card">
+                    <div class="stat-number">115</div>
+                    <div class="stat-label lang-en">responses</div>
+                    <div class="stat-label lang-ru">ответов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">63%</div>
+                    <div class="stat-label">eNPS score</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label lang-en">questions</div>
+                    <div class="stat-label lang-ru">вопросов</div>
+                </div>
+            </div>
+
+            <p class="intro-text lang-en">At the start of 2026, we analyzed the results of our <span class="highlight">eNPS (Employee Net Promoter Score)</span> survey, a regular check-in about how we're doing at the company and what we'd like to improve.</p>
+            <p class="intro-text lang-en">The numbers turned out to be interesting: some people gave fives, others gave threes, and some answered anonymously (spoiler: <span class="highlight">only six out of 115</span> were anonymous). Nastya, our HR lead, sat down with @nata and answered 10 questions in the context of these results — it turned out to be something like a <span class="highlight">mini-investigation</span>.</p>
+            <div class="callout lang-en">Inside: is a 19% drop in eNPS a lot or a little (and why), what are the main pain points most of us noticed in our daily routines, and why Nastya decided to work on the survey analysis on January 4th at 11 PM. Enjoy!</div>
+
+            <p class="intro-text lang-ru">В начале 2026-го проанализировали результаты eNPS — регулярного опроса о том, как нам работается в компании и что хотелось бы улучшить. Цифры оказались интересными: кто-то поставил пятёрки, кто-то — тройки, кто-то ответил анонимно (спойлер: анонимных оказалось <span class="highlight">всего шесть из 115</span>). Настя, наш HR-лидер, поговорила с @nata и ответила на 10 вопросов в контексте результатов — получилось что-то вроде <span class="highlight">мини-расследования</span>.</p>
+            <div class="callout lang-ru">Внутри: падение eNPS на 19% — это много или мало (и почему), какие основные боли большинство из нас подметило в своей рутине, и почему Настя решила поработать над отчётом 4 января в 23:00. Приятного чтения!</div>
+        </div>
+    </div>
+
+    <!-- Page 1: Question 1 -->
+    <div class="page" data-page="1">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">1</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">You prepared the eNPS analytics with Antigravity. How long did it take you to write the initial prompt?</div>
+                    <div class="question-text lang-ru">Ты готовила отчёт с Antigravity. А как долго ты писала стартовый промпт?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <div class="lang-en">
+                    <p>— I'm a lazy person, so in this case I opened ChatGPT and simply voiced what data I had and what result I wanted to get. For me, this is easier than writing everything by hand.</p>
+                    <p>Then I checked that ChatGPT understood me correctly and didn't add any nonsense, made some edits—and in <span class="highlight">10-15 minutes</span>, I had a structured prompt.</p>
+                </div>
+                <div class="lang-ru">
+                    <p>— Я ленивый человек, поэтому в этом случае решила сделать так: открыла ChatGPT, включила голосовую диктовку и просто озвучила, какие у меня есть данные и какой результат хочу получить. Для меня это проще, чем писать всё руками. Затем проверила, что ChatGPT понял меня правильно и не приписал глупостей, что-то подправила — и за <span class="highlight">10-15 минут</span> получился структурированный промпт.</p>
+                </div>
+
+                <div class="prompt-block">
+                    <div class="section-title">DATA SOURCES</div>
+                    <ul>
+                        <li>— sheet "responses": all 2025 responses, incl. anonymous - they are identified with "I'd like to stay anonymous" answer. Non-anonymous - contains "Sharing openly 😊" answer.</li>
+                        <li>— responses_old: 2024 responses + NON-anonymous 2025 responses (include these in 2025 totals)</li>
+                        <li>— eNPS: email → department/mentor mapping (enrich non-anonymous only)</li>
+                        <li>If email is missing/unmatched: label "unmapped", exclude from dept breakdowns, keep in overall totals.</li>
+                    </ul>
+
+                    <div class="section-title">ANALYSIS REQUIRED</div>
+                    <ul>
+                        <li>A) Data prep (mandatory): define how you detect year (2024/2025), anonymity, and how you merge 2025 (responses + non-anon 2025 from responses_old). Document this in 3–6 lines ("Data logic").</li>
+                        <li>B) 2025 overview: total responses; anon vs non-anon counts, response trend by month/wave; top/low participation departments (mapped only).</li>
+                        <li>C) Non-anon 2025 metrics: tasks, salary, growth opportunity, clarity of expectations. For each: average, dept differences (if sample sufficient; else "insufficient sample").</li>
+                        <li>D) 2024 vs 2025: compare overall eNPS + tasks/salary/growth (absolute diff + direction).</li>
+                        <li>E) Text answers: find "pros" and "cons/improvements" fields; clean trivial entries; group into 8–15 categories; Correctly make sentiment analysis of the text feedback to add positive ones to pros and negative ones to cons. Also if in pros and cons will be similar groups please use it in the section where number of feedback bigger.</li>
+                    </ul>
+
+                    <div class="section-title">VISUALS</div>
+                    <ul>
+                        <li>Create minimal dashboard using best-fit charts (pie only when readable; bars for rankings/comparisons; lines for trends). Include clear titles, axis labels, and data values.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Question 2 -->
+    <div class="page" data-page="2">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">2</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">The eNPS score dropped by almost 19% over the year. What's the reason?</div>
+                    <div class="question-text lang-ru">eNPS score за год просел почти на 19%. В чём причина?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <p class="lang-en">Overall, the eNPS score—our main metric—is derived from answers to one question: 'How likely are you to recommend Alconost as a place of work for your friends?' The value is calculated using a specific formula, and our result for 2025 is <span class="highlight">63%</span>. Generally, for the IT niche, a good indicator is considered to be 50%, so our 63% is pretty solid. But based on results from previous years, I know that Alconost can do even better.</p>
+                <p class="lang-ru">Вообще, eNPS score — наша главная метрика — выводится из ответов на один вопрос: How likely are you to recommend Alconost as a place of work for your friends? Числовое значение выводится по определённой формуле, и наш результат за 2025-й — <span class="highlight">63%</span>. Вообще для IT-ниши хорошим показателем считается 50%, так что наши 63% — очень неплохо. Но по результатам прошлых лет я знаю, что Alconost может и лучше.</p>
+
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-value">63.5<span class="metric-change">-18.9</span></div>
+                        <div class="metric-label">eNPS Score</div>
+                        <div class="metric-subtitle lang-en">IT Benchmark: 50+ (Great)</div>
+                        <div class="metric-subtitle lang-ru">IT-бенчмарк: 50+ (Отлично)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">4.6<span class="metric-change">-0.2</span></div>
+                        <div class="metric-label lang-en">Avg Recommendation</div>
+                        <div class="metric-label lang-ru">Средняя рекомендация</div>
+                        <div class="metric-subtitle lang-en">Average of actual scores</div>
+                        <div class="metric-subtitle lang-ru">Среднее значение оценок</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">5%</div>
+                        <div class="metric-label lang-en">Anonymity</div>
+                        <div class="metric-label lang-ru">Анонимность</div>
+                        <div class="metric-subtitle">6 / 115</div>
+                    </div>
+                </div>
+
+                <div class="callout lang-en">For the IT niche, a good indicator is considered to be 50%; our 63% is pretty solid. But I know that Alconost can do even better.</div>
+                <div class="callout lang-ru">Для IT-ниши хорошим показателем считается 50%; наши 63% — очень неплохо. Но я знаю, что Alconost может лучше.</div>
+                <p class="lang-en">The decline is connected to the growth of those who, on a 5-point scale, rated their willingness to recommend Alconost at 1-3 points. In previous years, the share of responses like these was less than 1%, but in 2025 it was already <span class="highlight">7–8%</span>. This is a noticeable drop, but for me it's an expected and even healthy result.</p>
+                <p class="lang-ru">Снижение связано с ростом числа тех, кто по 5-балльной системе оценил желание рекомендовать Alconost друзьям в <span class="highlight">1-3 балла</span>. В предыдущие годы доля таких ответов составляла меньше 1%, а в 2025-м — уже 7–8%. Это заметное проседание, но для меня это ожидаемый и даже здоровый результат.</p>
+                <p class="lang-en">I understand the reasons: last year we had frozen benefits and salary increases, the overall situation was unstable—so it's logical that not everyone was ready to recommend the company during a time of turbulence.</p>
+                <p class="lang-ru">Мне понятны причины: у нас в прошлом году были заморожены бенефиты и рейзы, сама обстановка была нестабильной — логично, что не все были готовы рекомендовать компанию в момент турбулентности.</p>
+                <p class="lang-en">So the drop in the score tells me that people <span class="highlight">answered the question honestly</span>: eNPS reflected the real situation, not a rosy picture. If everyone had only given fives, that would have been a signal that eNPS isn't working as a tool.</p>
+                <p class="lang-ru">Так что проседание оценки для меня говорит о том, что ребята <span class="highlight">отвечали на вопрос честно</span>: eNPS отразил реальную ситуацию, а не нарисовал розовую картинку. Если бы все ставили только пятёрки, это был бы сигнал, что eNPS не работает как инструмент.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Question 3 -->
+    <div class="page" data-page="3">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">3</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">Only 5% anonymous responses—is that a lot or a little?</div>
+                    <div class="question-text lang-ru">Только 5% анонимных ответов — это много или мало?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <p class="lang-en">— Generally, in the IT industry, surveys like this are anonymous by default. We've always conducted them non-anonymously so that we could work constructively with the feedback: come to a specific person, discuss concerns, and improve the situation in each individual case.</p>
+                <p class="lang-ru">— Вообще, в IT-индустрии опросы такого плана анонимны по умолчанию. Мы же всегда проводили их не анонимно, чтобы с фидбэком можно было конструктивно работать: прийти к конкретному человеку, обсудить консёрны и улучшить ситуацию в каждом конкретном случае.</p>
+                <p class="lang-en">But in 2025, against the backdrop of frozen salary increases and benefits, it seemed important to me to give people the option to speak up anonymously.</p>
+                <p class="lang-ru">Но в 2025-м, на фоне заморозки рейзов и бенефитов, мне показалось важным дать ребятам возможность высказаться анонимно.</p>
+                <p class="lang-en">In reality, only <span class="highlight">6 out of 115</span> answers were anonymous. I think that's not much.</p>
+                <p class="lang-ru">По факту анонимной опцией воспользовались только в <span class="highlight">6 случаях из 115</span>. Я думаю, это немного.</p>
+                <div class="callout lang-en">For me, this experience confirmed that we have a <span class="highlight">generally healthy culture</span>, because even in difficult times, the absolute majority feels comfortable sharing their opinions openly.</div>
+                <div class="callout lang-ru">Для меня этот опыт послужил подтверждением, что у нас <span class="highlight">в целом здоровая культура</span>, потому что даже в непростое время абсолютному большинству комфортно делиться мнениями в открытую.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4: Question 4 -->
+    <div class="page" data-page="4">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">4</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">Pay—the drop is less than 0.3 points. How do you assess this indicator given the turbulent 2025?</div>
+                    <div class="question-text lang-ru">Pay — проседание меньше чем на 0,3 пункта. Как ты оцениваешь такой показатель с учётом турбулентного 2025-го?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <p class="lang-en">In the chart, we see a comparison only within two years. But from surveys from even earlier years, I know that this trend didn't appear all of a sudden. Satisfaction with pay was declining even in stable years, very gradually though. I'm sharing the exact numbers below.</p>
+                <p class="lang-ru">На графике мы видим сравнение только в пределах двух лет. Но из опросов ещё более ранних я знаю, что этот тренд не появился внезапно. Удовлетворённость оплатой снижалась даже в стабильные годы, хоть и очень постепенно. Делюсь точными числами ниже.</p>
+
+                <div class="chart-container">
+                    <div class="chart-title lang-en">2025 vs 2024 Comparison</div>
+                    <div class="chart-title lang-ru">Сравнение 2025 и 2024</div>
+                    <div class="comparison-chart">
+                        <div class="comparison-item">
+                            <div class="comparison-bars">
+                                <div class="comp-bar y2025" style="height: 82%;">4.11</div>
+                                <div class="comp-bar y2024" style="height: 88%;">4.39</div>
+                            </div>
+                            <div class="comparison-label">Pay</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-bars">
+                                <div class="comp-bar y2025" style="height: 94%;">4.70</div>
+                                <div class="comp-bar y2024" style="height: 91%;">4.56</div>
+                            </div>
+                            <div class="comparison-label">Tasks</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-bars">
+                                <div class="comp-bar y2025" style="height: 89%;">4.43</div>
+                                <div class="comp-bar y2024" style="height: 89%;">4.47</div>
+                            </div>
+                            <div class="comparison-label">Growth</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-bars">
+                                <div class="comp-bar y2025" style="height: 93%;">4.65</div>
+                                <div class="comp-bar y2024" style="height: 92%;">4.61</div>
+                            </div>
+                            <div class="comparison-label">Process</div>
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-dot blue"></div> 2025</div>
+                        <div class="legend-item"><div class="legend-dot gray"></div> 2024</div>
+                    </div>
+                </div>
+
+                <div class="line-chart">
+                    <div class="line-chart-title lang-en">Pay Satisfaction Trend (2022-2025)</div>
+                    <div class="line-chart-title lang-ru">Тренд удовлетворённости оплатой (2022-2025)</div>
+                    <div class="chart-grid">
+                        <div class="y-axis-labels">
+                            <span>5.0</span>
+                            <span>4.5</span>
+                            <span>4.0</span>
+                        </div>
+                        <div class="line-path">
+                            <svg class="line-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#007AFF;stop-opacity:1" />
+                                        <stop offset="75%" style="stop-color:#007AFF;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#FF492C;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#007AFF;stop-opacity:0.15" />
+                                        <stop offset="100%" style="stop-color:#007AFF;stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Area fill -->
+                                <path d="M 0,56 L 33,58 L 67,61 L 100,89 L 100,100 L 0,100 Z" 
+                                      fill="url(#areaGradient)" />
+                                <!-- Line -->
+                                <path d="M 0,56 L 33,58 L 67,61 L 100,89" 
+                                      stroke="url(#lineGradient)" 
+                                      stroke-width="1.2" 
+                                      fill="none" 
+                                      stroke-linecap="round" 
+                                      stroke-linejoin="round" />
+                            </svg>
+                            <div class="data-points">
+                                <div class="data-point" style="left: 0%; bottom: 44%;">
+                                    <div class="data-label">4.44</div>
+                                </div>
+                                <div class="data-point" style="left: 33%; bottom: 42%;">
+                                    <div class="data-label">4.42</div>
+                                </div>
+                                <div class="data-point" style="left: 67%; bottom: 39%;">
+                                    <div class="data-label">4.39</div>
+                                </div>
+                                <div class="data-point negative" style="left: 100%; bottom: 11%;">
+                                    <div class="data-label negative">4.11</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x-axis-labels">
+                        <span class="x-label">2022</span>
+                        <span class="x-label">2023</span>
+                        <span class="x-label">2024</span>
+                        <span class="x-label">2025</span>
+                    </div>
+                </div>
+
+                <p class="lang-en">I also want to note that it was specifically in 2025 that we started promoting eNPS as the tool through which people share feedback about compensation satisfaction. In previous years, this topic was more often connected to performance reviews, but in 2025, eNPS became <span class="highlight">the main channel for financial feedback</span>. I think the noticeable drop in this indicator over the past year is partly due to this as well.</p>
+                <p class="lang-ru">Ещё хочу отметить, что именно в 2025-м мы стали продвигать eNPS как инструмент, через который желательно делиться фидбэком по удовлетворённости компенсациями. В предыдущие годы эту тему чаще поднимали в контексте перформанс-ревью, но в 2025-м <span class="highlight">главным каналом фидбэка по финансам стал именно eNPS</span>. Я думаю, что заметное проседание показателя за прошлый год обусловлено и этим в том числе.</p>
+                <p class="lang-en">I didn't have specific numerical expectations for 2025. I don't treat eNPS like a precise measuring instrument, but more like a <span class="highlight">compass</span>: it shows direction and dynamics, but doesn't give micro-precision. The numbers show that in the long-term dynamics, the downward trend continues, and the drop in 2025 can be considered an objective reaction to the freeze on benefits and salary increases.</p>
+                <p class="lang-ru">У меня не было конкретных числовых ожиданий за 2025-й. Я отношусь к eNPS не как к точному измерительному прибору, а скорее <span class="highlight">как к компасу</span>: он показывает направление и динамику, но не даёт микроточности. Числа показывают, что в длинной динамике нисходящий тренд сохраняется, а проседание в 2025-м можно считать объективной реакцией на заморозку бенефитов и рейзов.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5: Question 5 -->
+    <div class="page" data-page="5">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">5</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">But at the same time, the percentage of satisfaction with tasks actually increased. Why?</div>
+                    <div class="question-text lang-ru">Но при этом процент удовлетворённости задачами даже вырос. Почему?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <p class="lang-en">I connect this to a broader context. The world and the market as a whole have changed; not just our company and not just the localization industry got "shaken up." Perhaps, observing how things are going for others, we simply started to cherish more what we have.</p>
+                <p class="lang-ru">Я связываю это с более широким контекстом. Мир и рынок в целом изменились, «встряхнуло» не только нашу компанию и не только индустрию локализации. Возможно, на этом фоне, наблюдая, как обстоят дела других, мы просто начали больше ценить то, что у нас есть.</p>
+                <div class="callout lang-en">We managed to build a pretty healthy system: negativity doesn't accumulate, problems get discussed, solutions are found.</div>
+                <div class="callout lang-ru">Удалось выстроить довольно здоровую систему: негатив не накапливается, проблемы проговариваются, решения находятся.</div>
+                <p class="lang-en">I also know this: the growth of this indicator was definitely influenced by how we, together with team leads and mentors in previous years, worked with signals when people weren't satisfied with their tasks.</p>
+                <p class="lang-ru">Ещё я знаю вот что: на рост этого показателя точно повлияло то, как мы с лидами и менторами в предыдущие годы работали с сигналами, когда ребята не были довольны своими задачами.</p>
+                <p class="lang-en">At the end of last year, I conducted a survey about how eNPS works, and to the question "Do you feel that your eNPS feedback has ever helped improve your work experience or any processes at Alconost?" three-quarters of people—<span class="highlight">77%</span>—noted a positive effect.</p>
+                <p class="lang-ru">Я в конце прошлого года проводила опрос о том, как работает eNPS, и на вопрос "Do you feel that your eNPS feedback has ever helped improve your work experience or any processes at Alconost?" положительный эффект отметили 3/4 ребят — <span class="highlight">77%</span>.</p>
+                <p class="lang-en">I see that we've managed to build a pretty <span class="highlight">healthy system</span>, including thanks to signals from eNPS, where tough things are discussed and resolved—taking into account the interests of each specific Alconostian.</p>
+                <p class="lang-ru">Вижу, что нам удалось выстроить довольно <span class="highlight">здоровую систему</span>, в том числе и благодаря сигналам из eNPS, когда проблемные моменты обсуждаются и решаются — с учётом интересов каждого конкретного алконостианина.</p>
+                <p class="lang-en">This is a constructive approach, thanks to which negativity doesn't accumulate, problems get discussed, and solutions are found. And in the end, despite external factors, we remain healthy and motivated inside.</p>
+                <p class="lang-ru">Это конструктивный подход, благодаря которому негатив не накапливается, проблемы проговариваются, решения находятся. И в итоге, несмотря на внешние факторы, мы остаемся здоровыми и мотивированными внутри.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 6: Question 6 -->
+    <div class="page" data-page="6">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">6</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">When it comes to processes at the company, it's striking that a whole 15 ratings are in the "red zone." What's the reason here?</div>
+                    <div class="question-text lang-ru">Если говорить о процессах в компании, бросается в глаза, что целых 15 оценок — в «красной зоне». В чём тут причина?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <p class="lang-en">— One of the reasons is that throughout the year there were slowdowns in App's performance. And this is a tool that most respondents work with on a daily basis.</p>
+                <p class="lang-ru">— Одна из причин — в течение года были тормоза в работе App, а это инструмент, с которым постоянно работает большинство опрошенных.</p>
+                <p class="lang-en">By the end of the year, App's performance speed improved noticeably, but since our survey reflects dynamics over the entire year—I think this factor had an impact. I want to thank the App team for their work—even though App has a small team, they're doing their absolute best to satisfy everyone's requests at Alconost.</p>
+                <p class="lang-ru">К концу года скорость работы App заметно улучшилась, но т.к. наш опрос отражает динамику за целый год — думаю, этот фактор повлиял. Хочу поблагодарить ребят из App за их работу — у App хоть и небольшая команда, но они изо всех сил стараются удовлетворить запросы всех в Alconost.</p>
+
+                <div class="chart-container">
+                    <div class="chart-title lang-en">Company Processes Estimation</div>
+                    <div class="chart-title lang-ru">Оценка процессов компании</div>
+                    <div class="progress-chart">
+                        <div class="progress-segment high" style="flex: 80;">80</div>
+                        <div class="progress-segment med" style="flex: 20;">20</div>
+                        <div class="progress-segment low" style="flex: 15;">15</div>
+                    </div>
+                    <div class="progress-labels">
+                        <div class="progress-label"><div class="dot" style="background: linear-gradient(135deg, #007AFF, #0F1BC5);"></div> <span class="lang-en">High (4-5)</span><span class="lang-ru">Высокие (4-5)</span></div>
+                        <div class="progress-label"><div class="dot" style="background: linear-gradient(135deg, rgba(0, 122, 255, 0.6), rgba(15, 27, 197, 0.5));"></div> <span class="lang-en">Med (3)</span><span class="lang-ru">Средние (3)</span></div>
+                        <div class="progress-label"><div class="dot" style="background: linear-gradient(135deg, rgba(0, 122, 255, 0.35), rgba(15, 27, 197, 0.25));"></div> <span class="lang-en">Low (1-2)</span><span class="lang-ru">Низкие (1-2)</span></div>
+                    </div>
+                </div>
+
+                <div class="callout lang-en">By the end of the year, App's performance speed improved noticeably, thanks to the App team.</div>
+                <div class="callout lang-ru">К концу года скорость работы App заметно улучшилась, спасибо команде App.</div>
+                <p class="lang-en">Plus—both for us and in the market in general—new tools and services useful for work are constantly appearing. By the time people master one thing, something new and different has already appeared—you can't always keep up with the updates, and this can also create tension. It's that <span class="highlight">Fear of Missing Out</span>.</p>
+                <p class="lang-ru">Плюс — и у нас, и в целом на рынке постоянно появляются новые тулы и сервисы, полезные для работы. Пока ребята освоят что-то одно, уже появляется новое, другое — не всегда успеваешь за апдейтами, это тоже может создавать напряжение. <span class="highlight">такой вот Fear of Missing Out</span>.</p>
+                <p class="lang-en">And, of course, team compression in 2025 added workload for everyone—especially loc. managers, marketers, and salespeople. Some processes had to be reassembled and restructured on the fly. Guys, you all are absolutely incredible for <span class="highlight">doing your best despite everything</span>—thank you, thank you, I never get tired of saying it.</p>
+                <p class="lang-ru">И, конечно, сжатие команд в 2025-м добавило нагрузки на ребят — особенно локменеджеров, маркетологов и сейлзов. Какие-то процессы пришлось пересобирать и перестраивать по ходу работы. Ребята, вы огромные молодцы, что <span class="highlight">do your best несмотря ни на что</span> — спасибо, спасибо, не устаю всем повторять.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 7: Question 7 -->
+    <div class="page" data-page="7">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">7</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">Vendor managers have the lowest ratings for compensation (3.5) and tasks (4). Why?</div>
+                    <div class="question-text lang-ru">У вендоров самые низкие оценки по компенсации (3,5) и задачам (4). Почему?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <p class="lang-en">— The vendor managers department <span class="highlight">changed drastically</span> in 2025. This team was reassembled in terms of people, processes, and even essence—they got new tasks and areas of responsibility.</p>
+                <p class="lang-ru">— Отдел вендоров <span class="highlight">почти полностью поменялся</span> с 2024 года. Эта команда пересобралась по людям, процессам и даже по сути — у них появились новые задачи и сферы ответственности.</p>
+
+                <div class="charts-grid">
+                    <div class="chart-box">
+                        <div class="chart-box-title lang-en">Compensation & Benefits</div>
+                        <div class="chart-box-title lang-ru">Компенсация и бенефиты</div>
+                        <div class="v-bar-chart">
+                            <div class="v-bar-y-labels">
+                                <span>5</span>
+                                <span>4</span>
+                                <span>3</span>
+                                <span>2</span>
+                                <span>1</span>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-1" style="height: 79.5%;">
+                                    <span class="v-bar-value">4.18</span>
+                                    <span class="v-bar-label">loc</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-2" style="height: 71.5%;">
+                                    <span class="v-bar-value">3.86</span>
+                                    <span class="v-bar-label">marketing</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-3" style="height: 79.25%;">
+                                    <span class="v-bar-value">4.17</span>
+                                    <span class="v-bar-label">sales</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-4" style="height: 77.5%;">
+                                    <span class="v-bar-value">4.1</span>
+                                    <span class="v-bar-label">products</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-5" style="height: 89.25%;">
+                                    <span class="v-bar-value">4.57</span>
+                                    <span class="v-bar-label">video</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-6" style="height: 62.5%;">
+                                    <span class="v-bar-value">3.5</span>
+                                    <span class="v-bar-label">vendor</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-7" style="height: 100%;">
+                                    <span class="v-bar-value">5</span>
+                                    <span class="v-bar-label">hr</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-8" style="height: 83.25%;">
+                                    <span class="v-bar-value">4.33</span>
+                                    <span class="v-bar-label">bod</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-box">
+                        <div class="chart-box-title lang-en">Tasks & Work Interest</div>
+                        <div class="chart-box-title lang-ru">Задачи и интерес к работе</div>
+                        <div class="v-bar-chart">
+                            <div class="v-bar-y-labels">
+                                <span>5</span>
+                                <span>4</span>
+                                <span>3</span>
+                                <span>2</span>
+                                <span>1</span>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-1" style="height: 94.75%;">
+                                    <span class="v-bar-value">4.79</span>
+                                    <span class="v-bar-label">loc</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-2" style="height: 94%;">
+                                    <span class="v-bar-value">4.76</span>
+                                    <span class="v-bar-label">marketing</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-3" style="height: 90.25%;">
+                                    <span class="v-bar-value">4.61</span>
+                                    <span class="v-bar-label">sales</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-4" style="height: 95%;">
+                                    <span class="v-bar-value">4.8</span>
+                                    <span class="v-bar-label">products</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-5" style="height: 92.75%;">
+                                    <span class="v-bar-value">4.71</span>
+                                    <span class="v-bar-label">video</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-6" style="height: 75%;">
+                                    <span class="v-bar-value">4</span>
+                                    <span class="v-bar-label">vendor</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-7" style="height: 100%;">
+                                    <span class="v-bar-value">5</span>
+                                    <span class="v-bar-label">hr</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-8" style="height: 91.75%;">
+                                    <span class="v-bar-value">4.67</span>
+                                    <span class="v-bar-label">bod</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="lang-en" style="margin-top: 20px;">Initially the team shrank, but as the volume of tasks grew, we caught up to 2024 sizes. No other team at Alconost was so dramatically reassembled—I think this is the main factor why ratings from vendor managers differ so noticeably from ratings from other departments.</p>
+                <p class="lang-ru" style="margin-top: 20px;">Сначала команда уменьшилась, но с ростом объёма задач мы догнали размеры 2024-го. Ни одна другая команда в Alconost так сильно не пересобиралась — думаю, это основной фактор, из-за которого оценки от вендоров так заметно отличаются от оценок из других отделов.</p>
+                <p class="lang-en">Of course, Dima @dv, the vendor team lead, and I aren't just looking at these numbers and drops, we're taking action. In 2025 we fruitfully communicated with the girls from @vendorsteam, discussed situations, and looked for compromises.</p>
+                <p class="lang-ru">Конечно, мы с Димой @dv, лидом отдела вендоров, не просто смотрим на эти числа и провисания, а действуем. В 2025-м продуктивно общались с девочками из @vendorteam, обсуждали ситуации и искали компромиссы.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 8: Question 8 -->
+    <div class="page" data-page="8">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">8</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">The main value of the company for people is the team and culture—this was noted in the absolute majority of responses. What do you think about this?</div>
+                    <div class="question-text lang-ru">Главная ценность компании для ребят — команда и культура, это отметили в абсолютном большинстве ответов. Что ты об этом думаешь?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <p class="lang-en">— I think we initially developed a unique culture, and over time we also learned to hire good people. In 90–95% of cases, both HR and the hiring teams can see and feel very well whether a candidate has a <span class="highlight">culture fit</span>.</p>
+                <p class="lang-ru">— Думаю, у нас изначально сложилась уникальная культура, а со временем мы ещё научились нанимать хороших людей. В 90–95% случаев и HR, и нанимающие команды очень хорошо видят и чувствуют, есть ли <span class="highlight">culture fit</span> у кандидата.</p>
+
+                <!-- Editorial Comparison Table -->
+                <div class="comparison-table">
+                    <div class="comparison-columns">
+                        <!-- Left Column: What People Value -->
+                        <div class="comparison-column value-column">
+                            <h3 class="column-title lang-en">What People Value Most</h3>
+                            <h3 class="column-title lang-ru">Что больше всего ценят</h3>
+                            
+                            <div class="comparison-list">
+                                <div class="comparison-row">
+                                    <span class="row-bullet"></span>
+                                    <span class="row-label">Team & Culture</span>
+                                    <span class="row-value">98</span>
+                                </div>
+                                <div class="comparison-row">
+                                    <span class="row-bullet"></span>
+                                    <span class="row-label">Remote & Flexibility</span>
+                                    <span class="row-value">30</span>
+                                </div>
+                                <div class="comparison-row">
+                                    <span class="row-bullet"></span>
+                                    <span class="row-label">Growth & Tasks</span>
+                                    <span class="row-value">26</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: Improvement Areas -->
+                        <div class="comparison-column improvement-column">
+                            <h3 class="column-title lang-en">Improvement Areas</h3>
+                            <h3 class="column-title lang-ru">Области улучшений</h3>
+                            
+                            <div class="comparison-list">
+                                <div class="comparison-row">
+                                    <span class="row-bullet"></span>
+                                    <span class="row-label">Processes & Structure</span>
+                                    <span class="row-value">15</span>
+                                </div>
+                                <div class="comparison-row">
+                                    <span class="row-bullet"></span>
+                                    <span class="row-label">Compensation</span>
+                                    <span class="row-value">9</span>
+                                </div>
+                                <div class="comparison-row">
+                                    <span class="row-bullet"></span>
+                                    <span class="row-label">Workload & Balance</span>
+                                    <span class="row-value">6</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="lang-en" style="margin-top: 20px;">And the market itself is changing noticeably too. The era when IT companies competed with offices, cookies, and latte syrups is gone. After all, all of that is just bells and whistles—they don't affect job satisfaction. Much more important are a healthy atmosphere, team, and culture. We've always stood out in this way and haven't sold ourselves through bonuses. Our advantages are culture, team, tasks, and how work is organized within.</p>
+                <p class="lang-ru" style="margin-top: 20px;">А ещё и сам рынок заметно меняется. Эпоха, когда IT-компании соревновались офисами, едой и сиропами для латте, ушла. Ведь всё это — внешние атрибуты, на удовлетворённость от работы влияют не они. Гораздо важнее здоровая атмосфера, команда и культура. Мы отличались этим всегда и не продавали себя через бонусы. Наши преимущества — культура, команда, задачи и то, как у нас устроена работа.</p>
+                <div class="callout lang-en">You can attract people to a company with flexible schedules and remote work, but what makes people want to stay in a company—that's precisely team and culture.</div>
+                <div class="callout lang-ru">Привлечь в компанию можно гибким графиком и удалёнкой, но вот из-за чего в компании захотят остаться — это как раз команда и культура.</div>
+                <p class="lang-en">We're consistent in this: we communicate culture in job postings, at interviews, in communication with candidates. And we regularly get feedback that people accept offers specifically because of the culture. This is our <span class="highlight">strongest positioning</span>.</p>
+                <p class="lang-ru">Мы консистентны в этом: транслируем культуру в вакансиях, на собеседованиях, в общении с кандидатами. И регулярно получаем фидбэк, что люди принимают оффер именно из-за культуры. Это наше <span class="highlight">самое сильное позиционирование</span>.</p>
+                <p class="lang-en">Culture is hard to formalize, but it's deeply embedded. So much so that after 10–15 minutes of talking with a person from a different culture, it's already clear whether they have the similar spirit or not :)</p>
+                <p class="lang-ru">Культура сложно формализуется, но глубоко вшивается. Настолько, что после 10–15 минут общения с человеком другой культуры уже понятно — не наше :)</p>
+                <p class="lang-en">Here's what's also interesting about the gap between the two top points in "What people value most": <span class="highlight">98 responses</span> about team and culture, and only 30 about remote & flexibility. I think it's because remote work, flexible schedules, bonuses—these are things that can attract a candidate. But what makes people want to stay at a company—that's a strong culture and a good team.</p>
+                <p class="lang-ru">Тут ещё интересна и разбежка между двумя верхними пунктами в What people value most: <span class="highlight">98 ответов</span> — про команду и культуру, и только 30 — про remote & flexibility. Я думаю, дело в том, что удалёнка, гибкий график, бонусы — это то, чем можно привлечь кандидата. Но вот ради чего в компании захотят остаться — это сильная культура и хорошая команда.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 9: Question 9 -->
+    <div class="page" data-page="9">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">9</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">Your video was recorded on January 4th at 10:56 PM. Why are you working on holidays at night?</div>
+                    <div class="question-text lang-ru">Твоё видео записано 4 января в 22:56. Почему ты работаешь в праздники ночью?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <p class="lang-en">I'm a pretty creative person, and that part of me lives on its own schedule—I don't know how to tame my own inspiration. If it came on January 4th at 10 PM—well, who am I to argue with it?</p>
+                <p class="lang-ru">Я довольно творческий человек, эта часть меня живёт по своему расписанию — я не умею подчинять вдохновение. Если оно пришло 4 января в 22:00 — ну, кто я такая, чтобы с ним спорить.</p>
+
+                <div style="text-align: center; margin: 24px 0;">
+                    <div style="display: inline-block; background: rgba(31, 31, 31, 0.6); border: 1px solid rgba(232, 240, 255, 0.2); border-radius: 12px; padding: 14px 28px; font-family: 'IBM Plex Mono', monospace; color: #D6D6D6; font-size: 20px;">
+                        Sun Jan 4 &nbsp;<span style="color: #00BF56; font-weight: 600;">22:56</span>
+                    </div>
+                </div>
+
+                <p class="lang-en">When something lights me up, I follow that fire. <span class="highlight">That's not burnout — it's fuel.</span></p>
+                <p class="lang-ru">Если «зажгло», я ушла гореть. <span class="highlight">Не выгорать — это другое.</span></p>
+                <div class="callout lang-en">Following the fire and burning out at work are different, completely different things.</div>
+                <div class="callout lang-ru">Гореть задачей и выгорать на работе — разные, совершенно разные вещи.</div>
+                <p class="lang-en">At the same time, my <span class="highlight">work-life balance</span> doesn't suffer. I clearly understand what I can do, when, and how much. And if I feel tired from creative evenings like these, I'll not keep doing the same. But this is personally how it works for me, you don't have to follow my example at all—after all, everyone has their own biorhythms and their own schedule of inspiration surges.</p>
+                <p class="lang-ru">При этом мой <span class="highlight">work-life balance</span> не страдает. Я чётко понимаю, что я могу, когда и сколько. И если почувствую усталость от таких творческих вечеров, приму меры. Но это лично у меня так, брать с меня пример совсем не обязательно — ведь у каждого свои биоритмы и свой график приливов вдохновения.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 10: Question 10 -->
+    <div class="page" data-page="10">
+        <div class="card">
+            <div class="question-header">
+                <div class="question-number">
+                    <div class="planet-ring"></div>
+                    <span class="planet-num">10</span>
+                </div>
+                <div>
+                    <div class="question-text lang-en">Your overall impression of eNPS-2025? Main goals for HR based on the results?</div>
+                    <div class="question-text lang-ru">Твоё общее впечатление от eNPS-2025? Главные цели для HR по итогам?</div>
+                </div>
+            </div>
+            <div class="answer-text">
+                <p class="lang-en">The eNPS results overall match reality. Even considering that not everyone fills out the survey and we now send out the questionnaire a bit less frequently—I see that our <span class="highlight">compass is working</span>.</p>
+                <p class="lang-ru">Результаты eNPS в целом совпадают с реальностью. Даже с учётом того, что опрос заполняют не все и мы теперь рассылаем опросник немного реже, — я вижу, что наш <span class="highlight">компас работает</span>.</p>
+                <p class="lang-en">The most unexpected thing for me personally was the result of the experiment with the anonymous option. On one hand, I didn't get the effect I expected. On the other hand—if the anonymous option isn't in demand, then we really don't need it that much after all.</p>
+                <p class="lang-ru">Самым неожиданным лично для меня стал результат эксперимента с анонимной опцией. С одной стороны, я не получила того эффекта, которого ждала. С другой — если анонимная опция не пользуется спросом, значит, она нам действительно не так нужна.</p>
+                <div class="callout lang-en">I'm all for sincere and constructive feedback not only in eNPS, but in daily work too.</div>
+                <div class="callout lang-ru">Я за искренний и конструктивный фидбэк не только в eNPS, но и в ежедневной работе.</div>
+                <p class="lang-en">This experiment became an important reference point for 2026. My main goal is for us to learn to give each other <span class="highlight">honest and constructive feedback</span> not only through eNPS, but in general.</p>
+                <p class="lang-ru">Этот эксперимент стал важной точкой опоры на 2026 год. Моя главная цель — чтобы мы учились давать друг другу <span class="highlight">честный и конструктивный фидбэк</span> не только через eNPS, но и вообще.</p>
+                <p class="lang-en">A healthy culture isn't about staying silent or having discussions in the hallways, but about open dialogue and the ability to speak up with the desire to make things better. I'd like all of us—without exception—to learn this: both those who give feedback and those who receive it. This is about our <span class="highlight">collective growth</span> as a team and as a company.</p>
+                <p class="lang-ru">Здоровая культура — это не про замалчивание или обсуждения в кулуарах, а про открытый диалог и умение говорить, желая сделать лучше. Мне хотелось бы, чтобы мы все — без исключения — учились этому: и те, кто даёт фидбэк, и те, кто его получает. Это про наше общее <span class="highlight">взросление</span> как команды и компании.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 11: Final -->
+    <div class="page page-final" data-page="11">
+        <div class="final-content">
+            <div class="final-text">
+                <h1 class="final-title">eNPS is not just a score — it's a conversation.</h1>
+                <p class="final-subtitle">
+                    Your feedback helps us navigate what's working<br>
+                    and chart our next direction — together.
+                </p>
+            </div>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSesFvj4jAlaDRwlHy5hRvYqTcPPnBePAZZDvtc9Bo8d0scpEA/viewform" 
+               target="_blank" 
+               class="cosmic-button">
+                <span class="button-glow"></span>
+                <span class="button-text">Go to eNPS →</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <button class="nav-btn nav-btn-left" id="prevBtn" onclick="changePage(-1)">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    
+    <button class="nav-btn nav-btn-right" id="nextBtn" onclick="changePage(1)">
+        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+    </button>
+
+    <script>
+        let currentPage = 0;
+        const totalPages = 12;
+
+        // Click on top progress bar to navigate
+        const topProgressBar = document.getElementById('progress');
+        topProgressBar.style.cursor = 'pointer';
+        topProgressBar.addEventListener('click', (e) => {
+            const rect = topProgressBar.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const clickProgress = x / rect.width;
+            const targetPage = Math.round(clickProgress * (totalPages - 1));
+            goToPage(Math.max(0, Math.min(totalPages - 1, targetPage)));
+        });
+
+        function updateUI() {
+            document.querySelectorAll('.page').forEach((page, index) => {
+                page.classList.toggle('active', index === currentPage);
+            });
+            
+            // Update top progress bar
+            const progress = ((currentPage + 1) / totalPages) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+            
+            document.getElementById('prevBtn').disabled = currentPage === 0;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages - 1;
+            
+            // Reset scroll position when switching pages
+            const activePage = document.querySelector('.page.active');
+            if (activePage) {
+                activePage.scrollTo({ top: 0, behavior: 'instant' });
+            }
+        }
+
+        function changePage(delta) {
+            const newPage = currentPage + delta;
+            if (newPage >= 0 && newPage < totalPages) {
+                currentPage = newPage;
+                updateUI();
+            }
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            updateUI();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changePage(1);
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changePage(-1);
+        });
+
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+        document.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) changePage(diff > 0 ? 1 : -1);
+        });
+
+        updateUI();
+
+        function switchLang(lang) {
+            document.body.classList.toggle('ru', lang === 'ru');
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+            });
+        }
+
+        // ============================================================
+        // Space Dust Background Animation
+        // ============================================================
+        
+        const canvas = document.getElementById('space-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size to window size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Particle class for cosmic dust
+        class Particle {
+            constructor() {
+                this.reset();
+                // Random initial position across the entire canvas
+                this.y = Math.random() * canvas.height;
+            }
+            
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = -10;
+                this.size = Math.random() * 1.5 + 0.5; // 0.5-2px
+                this.speedY = Math.random() * 0.3 + 0.1; // Very slow vertical drift
+                this.speedX = (Math.random() - 0.5) * 0.2; // Slight horizontal drift
+                this.opacity = Math.random() * 0.5 + 0.3; // 0.3-0.8 base opacity
+                this.twinkleSpeed = Math.random() * 0.02 + 0.01; // Slow twinkling
+                this.twinkleOffset = Math.random() * Math.PI * 2; // Random phase
+            }
+            
+            update() {
+                // Move particle
+                this.y += this.speedY;
+                this.x += this.speedX;
+                
+                // Twinkling effect (subtle opacity change)
+                this.twinkleOffset += this.twinkleSpeed;
+                const twinkle = Math.sin(this.twinkleOffset) * 0.3; // ±0.3 opacity variation
+                this.currentOpacity = Math.max(0.1, Math.min(1, this.opacity + twinkle));
+                
+                // Reset if particle goes off screen
+                if (this.y > canvas.height + 10) {
+                    this.reset();
+                } else if (this.x < -10 || this.x > canvas.width + 10) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                ctx.fillStyle = `rgba(232, 240, 255, ${this.currentOpacity})`; // #E8F0FF with variable opacity
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        // Create particles (not too many for performance)
+        const particles = [];
+        const particleCount = 120; // Subtle amount
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        // Animation loop
+        function animate() {
+            // Clear canvas with dark space background
+            ctx.fillStyle = '#0A0A0A';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Update and draw all particles
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Start animation
+        animate();
+
+        // Planet bubble label collision detection
+        function adjustBubbleLabels() {
+            const charts = document.querySelectorAll('.bubble-chart');
+            
+            charts.forEach(chart => {
+                const bubbles = Array.from(chart.querySelectorAll('.bubble'));
+                const labels = bubbles.map(b => b.querySelector('.bubble-label')).filter(l => l);
+                
+                // Reset all labels to default position first
+                labels.forEach(label => {
+                    label.style.transform = 'translateX(-50%)';
+                    label.style.marginTop = '8px';
+                    label.classList.remove('shifted');
+                });
+                
+                // Check for collisions and adjust
+                labels.forEach((label, i) => {
+                    const rect1 = label.getBoundingClientRect();
+                    let collision = false;
+                    let attempts = 0;
+                    const maxAttempts = 5;
+                    
+                    // Check against all other labels
+                    labels.forEach((otherLabel, j) => {
+                        if (i === j) return;
+                        
+                        const rect2 = otherLabel.getBoundingClientRect();
+                        
+                        // Check if rectangles overlap
+                        const overlaps = !(
+                            rect1.right < rect2.left || 
+                            rect1.left > rect2.right || 
+                            rect1.bottom < rect2.top || 
+                            rect1.top > rect2.bottom
+                        );
+                        
+                        if (overlaps) {
+                            collision = true;
+                            
+                            // Simple strategy: shift down in steps
+                            while (attempts < maxAttempts && collision) {
+                                attempts++;
+                                const shiftDown = 12 * attempts;
+                                label.style.marginTop = `${8 + shiftDown}px`;
+                                
+                                // Recheck
+                                const newRect = label.getBoundingClientRect();
+                                collision = !(
+                                    newRect.right < rect2.left || 
+                                    newRect.left > rect2.right || 
+                                    newRect.bottom < rect2.top || 
+                                    newRect.top > rect2.bottom
+                                );
+                            }
+                            
+                            // If still colliding after shifts, show leader line
+                            if (collision) {
+                                label.classList.add('shifted');
+                            }
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Run collision detection after page load and on page change
+        window.addEventListener('load', () => {
+            setTimeout(adjustBubbleLabels, 100);
+        });
+        
+        // Re-adjust labels when changing pages
+        const originalChangePage = changePage;
+        changePage = function(direction) {
+            originalChangePage(direction);
+            setTimeout(adjustBubbleLabels, 300);
+        };
+    </script>
+</body>
+</html>
