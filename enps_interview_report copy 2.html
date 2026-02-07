@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eNPS Interview 2025 — @ank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            overflow: hidden;
+            color: #1F1F1F;
+        }
+
+        .page {
+            display: none;
+            height: 100vh;
+            padding: 40px 40px 180px 40px;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 56px 64px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.04);
+            position: relative;
+            border: 1px solid #e2e8f0;
+            margin: 20px 0 140px 0;
+        }
+
+        .page-indicator {
+            position: absolute;
+            top: 28px;
+            right: 36px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0F1BC5 0%, #007AFF 100%);
+            color: white;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 12px rgba(15, 27, 197, 0.2);
+        }
+
+        .intro-badge {
+            display: inline-block;
+            background: #0F1BC5;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 40px;
+            font-weight: 800;
+            color: #1F1F1F;
+            margin-bottom: 16px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .question-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1F1F1F;
+            margin-bottom: 28px;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .answer-text {
+            font-size: 16px;
+            color: #334155;
+            line-height: 1.7;
+        }
+
+        .answer-text p {
+            margin-bottom: 16px;
+        }
+
+        .callout {
+            background: linear-gradient(135deg, rgba(15, 27, 197, 0.04), rgba(0, 122, 255, 0.06));
+            border-left: 6px solid #0F1BC5;
+            padding: 28px 32px;
+            margin: 28px 0;
+            border-radius: 0 16px 16px 0;
+            font-weight: 600;
+            color: #0F1BC5;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 16px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: #FF492C;
+            border: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 9999px;
+            cursor: pointer;
+            box-shadow: 0 6px 24px rgba(255, 73, 44, 0.35);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            filter: brightness(0.9);
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0F1BC5, #007AFF);
+            transition: width 0.3s ease;
+            z-index: 100;
+        }
+
+        .dots {
+            position: fixed;
+            bottom: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #0F1BC5;
+            width: 28px;
+        }
+
+        .intro-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #0F1BC5 0%, #007AFF 100%);
+            color: white;
+            padding: 36px 24px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 24px rgba(15, 27, 197, 0.2);
+        }
+
+        .stat-card:hover {
+            transform: scale(1.02);
+        }
+
+        .stat-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .table-data {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 28px 0;
+            font-size: 13px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .table-data th, .table-data td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #E8F0FF;
+        }
+
+        .table-data th {
+            background: linear-gradient(135deg, #0F1BC5 0%, #007AFF 100%);
+            font-weight: 600;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 11px;
+        }
+
+        .table-data th:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        .table-data th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+
+        .table-data tbody tr {
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .table-data tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .table-data tbody tr:hover {
+            background: linear-gradient(90deg, rgba(0, 122, 255, 0.08), rgba(15, 27, 197, 0.08));
+            transform: translateX(2px);
+        }
+
+        .table-data tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-data td:last-child {
+            font-weight: 600;
+        }
+
+        .table-data tbody tr td:first-child {
+            color: #1F1F1F;
+            font-weight: 600;
+        }
+
+        .intro-text {
+            font-size: 16px;
+            color: #334155;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Intro page: keep card centered, left-align text block */
+        .page[data-page="0"] .intro-text {
+            text-align: left;
+            max-width: none;
+            margin: 0;
+        }
+
+        /* Intro page: place subtitle under avatar, left-aligned */
+        .page[data-page="0"] .subtitle {
+            clear: left;
+            text-align: left;
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+
+
+        .highlight {
+            color: #0F1BC5;
+            font-weight: 700;
+        }
+
+        /* Highlight in table - styled as badge */
+        .table-data td.highlight {
+            background: linear-gradient(135deg, rgba(255, 73, 44, 0.1), rgba(255, 73, 44, 0.15));
+            color: #FF492C;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 6px;
+            display: inline-block;
+            min-width: 60px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(255, 73, 44, 0.2);
+        }
+
+        /* Line chart for trend visualization */
+        .line-chart {
+            position: relative;
+            height: 200px;
+            margin: 32px 0 48px 0;
+            padding: 20px 20px 40px 60px;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .line-chart-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1F1F1F;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .line-chart-title::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(135deg, #0F1BC5, #007AFF);
+            border-radius: 2px;
+        }
+
+        .chart-grid {
+            position: relative;
+            height: 160px;
+            border-left: 2px solid #E0E0E0;
+            border-bottom: 2px solid #E0E0E0;
+        }
+
+        .y-axis-labels {
+            position: absolute;
+            left: -50px;
+            top: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #94a3b8;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .line-path {
+            position: relative;
+            height: 100%;
+        }
+
+        .line-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .data-points {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .data-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #007AFF;
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .data-point:hover {
+            transform: scale(1.4);
+            border-width: 4px;
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.5);
+        }
+
+        .data-point.negative {
+            border-color: #FF492C;
+            box-shadow: 0 2px 8px rgba(255, 73, 44, 0.3);
+        }
+
+        .data-point.negative:hover {
+            box-shadow: 0 4px 16px rgba(255, 73, 44, 0.5);
+        }
+
+        .data-label {
+            position: absolute;
+            font-size: 11px;
+            font-weight: 600;
+            color: #0F1BC5;
+            transform: translate(-50%, -25px);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .data-label.negative {
+            color: #FF492C;
+        }
+
+        .x-axis-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            padding-left: 60px;
+            padding-right: 20px;
+        }
+
+        .x-label {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #007AFF;
+            box-shadow: 0 8px 30px rgba(0, 122, 255, 0.25);
+            float: left;
+            margin: 0 24px 16px 0;
+            shape-outside: circle(50%);
+        }
+
+        .intro-header {
+            overflow: hidden;
+        }
+
+        /* Code/Prompt block */
+        .prompt-block {
+            background: #1F1F1F;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin: 24px 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #D6D6D6;
+            overflow-x: auto;
+        }
+
+        .prompt-block .section-title {
+            color: #B6CDFF;
+            font-weight: 600;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        .prompt-block .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .prompt-block ul {
+            margin-left: 16px;
+            color: #D6D6D6;
+        }
+
+        .prompt-block li {
+            margin-bottom: 4px;
+        }
+
+        /* Charts */
+        .chart-container {
+            margin: 28px 0;
+            padding: 28px;
+            background: #f8fafc;
+            border-radius: 16px;
+        }
+
+        .chart-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1F1F1F;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .chart-title::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(135deg, #0F1BC5, #007AFF);
+            border-radius: 2px;
+        }
+
+        /* Metric cards row */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #1F1F1F 0%, #0A0A0A 100%);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            color: white;
+        }
+
+        .metric-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-value.down {
+            color: #FF492C;
+        }
+
+        .metric-change {
+            font-size: 14px;
+            color: #FF492C;
+            margin-left: 4px;
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: #D6D6D6;
+            font-weight: 600;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .metric-subtitle {
+            font-size: 10px;
+            color: #D6D6D6;
+            margin-top: 4px;
+        }
+
+        /* Bar chart */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar-label {
+            width: 80px;
+            font-size: 12px;
+            color: #64748b;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 32px;
+            background: #e8ecf4;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            transition: width 0.5s ease;
+        }
+
+        .bar-fill.blue {
+            background: linear-gradient(90deg, #0F1BC5, #007AFF);
+        }
+
+        .bar-fill.green {
+            background: linear-gradient(90deg, #00BF56, #00d68f);
+        }
+
+        .bar-fill.orange {
+            background: linear-gradient(90deg, #FF492C, #ff7b5c);
+        }
+
+        .bar-fill.purple {
+            background: linear-gradient(90deg, #a870c8, #D098F3);
+        }
+
+        /* Comparison chart */
+        .comparison-chart {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .comparison-item {
+            text-align: center;
+        }
+
+        .comparison-bars {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 8px;
+            height: 120px;
+            margin-bottom: 12px;
+        }
+
+        .comp-bar {
+            width: 40px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            transition: height 0.5s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Pay - Blue gradient */
+        .comparison-item:nth-child(1) .comp-bar.y2025 {
+            background: linear-gradient(180deg, #007AFF, #0F1BC5);
+        }
+
+        .comparison-item:nth-child(1) .comp-bar.y2024 {
+            background: linear-gradient(180deg, #B6CDFF, #90b3e8);
+        }
+
+        /* Tasks - Green gradient */
+        .comparison-item:nth-child(2) .comp-bar.y2025 {
+            background: linear-gradient(180deg, #00BF56, #00a049);
+        }
+
+        .comparison-item:nth-child(2) .comp-bar.y2024 {
+            background: linear-gradient(180deg, #8fd9b0, #6bc99a);
+        }
+
+        /* Growth - Purple gradient */
+        .comparison-item:nth-child(3) .comp-bar.y2025 {
+            background: linear-gradient(180deg, #D098F3, #a870c8);
+        }
+
+        .comparison-item:nth-child(3) .comp-bar.y2024 {
+            background: linear-gradient(180deg, #EDD4FA, #D098F3);
+        }
+
+        /* Process - Orange gradient */
+        .comparison-item:nth-child(4) .comp-bar.y2025 {
+            background: linear-gradient(180deg, #FFBF42, #ff9f1c);
+        }
+
+        .comparison-item:nth-child(4) .comp-bar.y2024 {
+            background: linear-gradient(180deg, #ffd98a, #ffc96e);
+        }
+
+        .comparison-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-dot.blue {
+            background: linear-gradient(90deg, #007AFF 0%, #00BF56 33%, #D098F3 66%, #FFBF42 100%);
+        }
+        .legend-dot.gray {
+            background: linear-gradient(90deg, #B6CDFF 0%, #8fd9b0 33%, #EDD4FA 66%, #ffd98a 100%);
+        }
+
+        /* Progress bar chart */
+        .progress-chart {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+
+        .progress-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            transition: flex 0.5s ease;
+        }
+
+        .progress-segment.high { background: #00BF56; }
+        .progress-segment.med { background: #FFBF42; }
+        .progress-segment.low { background: #FF492C; }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+
+        .progress-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .progress-label .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Horizontal bar chart */
+        .h-bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .h-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .h-bar-label {
+            width: 140px;
+            font-size: 12px;
+            color: #475569;
+            flex-shrink: 0;
+        }
+
+        .h-bar-track {
+            flex: 1;
+            height: 24px;
+            background: #e8ecf4;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .h-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Bubble chart */
+        .bubble-chart {
+            position: relative;
+            height: 300px;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+            padding: 4px;
+        }
+
+        .bubble:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            z-index: 10;
+        }
+
+        .bubble-value {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .bubble-label {
+            font-weight: 500;
+            opacity: 0.9;
+            line-height: 1.1;
+            max-width: 85%;
+        }
+
+        .bubble.green {
+            background: radial-gradient(circle at 35% 35%, #2DD97A, #00BF56, #009443);
+            box-shadow: 0 4px 20px rgba(0, 191, 86, 0.35);
+        }
+
+        .bubble.green:hover {
+            box-shadow: 0 6px 30px rgba(0, 191, 86, 0.5);
+        }
+
+        .bubble.red {
+            background: radial-gradient(circle at 35% 35%, #FF7B5C, #FF492C, #D63020);
+            box-shadow: 0 4px 20px rgba(255, 73, 44, 0.35);
+        }
+
+        .bubble.red:hover {
+            box-shadow: 0 6px 30px rgba(255, 73, 44, 0.5);
+        }
+
+        /* Vertical bar chart for departments - clean and consistent */
+        .v-bar-chart {
+            position: relative;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: stretch;
+            height: 220px;
+            gap: 4px;
+            padding: 10px 15px 10px 45px;
+            border-left: 2px solid #D0D0D0;
+            border-bottom: 2px solid #D0D0D0;
+            background: white;
+        }
+
+        /* Grid lines for scale - aligned at 2, 3, 4, 5 */
+        .v-bar-chart::before {
+            content: '';
+            position: absolute;
+            left: 45px;
+            bottom: 10px;
+            right: 15px;
+            top: 10px;
+            background: 
+                linear-gradient(to right, #E8F0FF 1px, transparent 1px) 0 0%,
+                linear-gradient(to right, #E8F0FF 1px, transparent 1px) 0 25%,
+                linear-gradient(to right, #E8F0FF 1px, transparent 1px) 0 50%,
+                linear-gradient(to right, #E8F0FF 1px, transparent 1px) 0 75%;
+            background-size: 100% 1px;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Y-axis labels */
+        .v-bar-y-labels {
+            position: absolute;
+            left: 8px;
+            bottom: 10px;
+            top: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #94a3b8;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            z-index: 1;
+            line-height: 1;
+        }
+
+        .v-bar-y-labels span {
+            transform: translateY(-50%);
+        }
+
+        .v-bar-y-labels span:first-child {
+            transform: translateY(0);
+        }
+
+        .v-bar-y-labels span:last-child {
+            transform: translateY(-100%);
+        }
+
+        /* Bar container */
+        .v-bar-item {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            min-width: 0;
+            z-index: 2;
+        }
+
+        /* Bar column */
+        .v-bar-column {
+            position: relative;
+            width: 100%;
+            max-width: 45px;
+            min-height: 20px;
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 6px;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .v-bar-value {
+            font-size: 10px;
+            font-weight: 700;
+            color: white;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .v-bar-column:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.05);
+        }
+
+        /* Bar label */
+        .v-bar-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            white-space: nowrap;
+            font-size: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            line-height: 1;
+        }
+
+        /* Bar intensity shades — single hue, dark → light */
+        .bar-shade-1 { background: linear-gradient(180deg, #1525CC, #0F1BC5); }
+        .bar-shade-2 { background: linear-gradient(180deg, #1438D4, #0E2ECC); }
+        .bar-shade-3 { background: linear-gradient(180deg, #134BDC, #0D40D4); }
+        .bar-shade-4 { background: linear-gradient(180deg, #125EE4, #0C52DC); }
+        .bar-shade-5 { background: linear-gradient(180deg, #1170EC, #0B64E4); }
+        .bar-shade-6 { background: linear-gradient(180deg, #0D84FF, #007AFF); }
+        .bar-shade-7 { background: linear-gradient(180deg, #2A92FF, #1A88FF); }
+        .bar-shade-8 { background: linear-gradient(180deg, #3DA0FF, #3396FF); }
+
+        /* Two column charts */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .chart-box {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 28px;
+            overflow: hidden;
+        }
+
+        .chart-box-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1F1F1F;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .chart-box-title::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(135deg, #0F1BC5, #007AFF);
+            border-radius: 2px;
+        }
+
+        /* Language switcher */
+        .lang-switch {
+            display: flex;
+            gap: 0;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+            margin-bottom: 28px;
+            width: fit-content;
+        }
+
+        .lang-btn {
+            padding: 8px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: transparent;
+            color: #94a3b8;
+        }
+
+        .lang-btn.active {
+            background: #0F1BC5;
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        /* Language visibility */
+        .lang-ru { display: none; }
+        body.ru .lang-en { display: none; }
+        body.ru .lang-ru { display: block; }
+
+        @media (max-width: 768px) {
+            .card { padding: 32px 24px; }
+            .intro-stats, .metrics-row { grid-template-columns: 1fr; }
+            .comparison-chart { grid-template-columns: repeat(2, 1fr); }
+            .charts-grid { grid-template-columns: 1fr; }
+            .question-text { font-size: 20px; }
+            h1 { font-size: 28px; }
+            .stat-number { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progress"></div>
+
+    <!-- Page 0: Intro -->
+    <div class="page active" data-page="0">
+        <div class="card">
+            <div class="page-indicator">Intro</div>
+            <div class="intro-header">
+                <img src="ank_photo.png" alt="@ank" class="avatar">
+                <div class="lang-switch">
+                    <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                    <button class="lang-btn" onclick="switchLang('ru')">RU</button>
+                </div>
+                <div class="intro-badge">eNPS Interview 2025</div>
+                <h1>Interview with @ank</h1>
+                <p class="subtitle">Nastya @ank analyzes 115 responses about working at the company: honest numbers and what they mean</p>
+            </div>
+
+            <div class="intro-stats">
+                <div class="stat-card">
+                    <div class="stat-number">115</div>
+                    <div class="stat-label">responses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">63%</div>
+                    <div class="stat-label">eNPS score</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">questions</div>
+                </div>
+            </div>
+
+            <p class="intro-text">At the start of 2026, we analyzed the results of our <span class="highlight">eNPS (Employee Net Promoter Score)</span> survey, a regular check-in about how we're doing at the company and what we'd like to improve.</p>
+            <p class="intro-text">The numbers turned out to be interesting: some people gave fives, others gave threes, and some answered anonymously (spoiler: <span class="highlight">only six out of 115</span> were anonymous). Nastya, our HR lead, sat down with @nata and answered 10 questions in the context of these results — it turned out to be something like a <span class="highlight">mini-investigation</span>.</p>
+            <div class="callout">Inside: is a 19% drop in eNPS a lot or a little (and why), what are the main pain points most of us noticed in our daily routines, and why Nastya decided to work on the survey analysis on January 4th at 11 PM. Enjoy!</div>
+        </div>
+    </div>
+
+    <!-- Page 1: Question 1 -->
+    <div class="page" data-page="1">
+        <div class="card">
+            <div class="page-indicator">1 / 10</div>
+            <div class="question-number">1</div>
+            <div class="question-text">You prepared the eNPS analytics with Antigravity. How long did it take you to write the initial prompt?</div>
+            <div class="answer-text">
+                <p>— I'm a lazy person, so in this case I opened ChatGPT and simply voiced what data I had and what result I wanted to get. For me, this is easier than writing everything by hand.</p>
+                <p>Then I checked that ChatGPT understood me correctly and didn't add any nonsense, made some edits—and in <span class="highlight">10-15 minutes</span>, I had a structured prompt.</p>
+
+                <div class="prompt-block">
+                    <div class="section-title">DATA SOURCES</div>
+                    <ul>
+                        <li>— sheet "responses": all 2025 responses, incl. anonymous - they are identified with "I'd like to stay anonymous" answer. Non-anonymous - contains "Sharing openly 😊" answer.</li>
+                        <li>— responses_old: 2024 responses + NON-anonymous 2025 responses (include these in 2025 totals)</li>
+                        <li>— eNPS: email → department/mentor mapping (enrich non-anonymous only)</li>
+                        <li>If email is missing/unmatched: label "unmapped", exclude from dept breakdowns, keep in overall totals.</li>
+                    </ul>
+
+                    <div class="section-title">ANALYSIS REQUIRED</div>
+                    <ul>
+                        <li>A) Data prep (mandatory): define how you detect year (2024/2025), anonymity, and how you merge 2025 (responses + non-anon 2025 from responses_old). Document this in 3–6 lines ("Data logic").</li>
+                        <li>B) 2025 overview: total responses; anon vs non-anon counts, response trend by month/wave; top/low participation departments (mapped only).</li>
+                        <li>C) Non-anon 2025 metrics: tasks, salary, growth opportunity, clarity of expectations. For each: average, dept differences (if sample sufficient; else "insufficient sample").</li>
+                        <li>D) 2024 vs 2025: compare overall eNPS + tasks/salary/growth (absolute diff + direction).</li>
+                        <li>E) Text answers: find "pros" and "cons/improvements" fields; clean trivial entries; group into 8–15 categories; Correctly make sentiment analysis of the text feedback to add positive ones to pros and negative ones to cons. Also if in pros and cons will be similar groups please use it in the section where number of feedback bigger.</li>
+                    </ul>
+
+                    <div class="section-title">VISUALS</div>
+                    <ul>
+                        <li>Create minimal dashboard using best-fit charts (pie only when readable; bars for rankings/comparisons; lines for trends). Include clear titles, axis labels, and data values.</li>
+                    </ul>
+                </div>
+
+                <div class="callout">Laziness is the engine of progress.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Question 2 -->
+    <div class="page" data-page="2">
+        <div class="card">
+            <div class="page-indicator">2 / 10</div>
+            <div class="question-number">2</div>
+            <div class="question-text">The eNPS score dropped by almost 19% over the year. What's the reason?</div>
+            <div class="answer-text">
+                <p>Overall, the eNPS score—our main metric—is derived from answers to one question: 'How likely are you to recommend Alconost as a place of work for your friends?' The value is calculated using a specific formula, and our result for 2025 is <span class="highlight">63%</span>. Generally, for the IT niche, a good indicator is considered to be 50%, so our 63% is pretty solid. But based on results from previous years, I know that Alconost can do even better.</p>
+
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-value">63.5<span class="metric-change">-18.9</span></div>
+                        <div class="metric-label">eNPS Score</div>
+                        <div class="metric-subtitle">IT Benchmark: 50+ (Great)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">4.6<span class="metric-change">-0.2</span></div>
+                        <div class="metric-label">Avg Recommendation</div>
+                        <div class="metric-subtitle">Average of actual scores</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">5%</div>
+                        <div class="metric-label">Anonymity</div>
+                        <div class="metric-subtitle">6 / 115</div>
+                    </div>
+                </div>
+
+                <div class="callout">For the IT niche, a good indicator is considered to be 50%; our 63% is pretty solid. But I know that Alconost can do even better.</div>
+                <p>The decline is connected to the growth of those who, on a 5-point scale, rated their willingness to recommend Alconost at 1-3 points. In previous years, the share of responses like these was less than 1%, but in 2025 it was already <span class="highlight">7–8%</span>. This is a noticeable drop, but for me it's an expected and even healthy result.</p>
+                <p>I understand the reasons: last year we had frozen benefits and salary increases, the overall situation was unstable—so it's logical that not everyone was ready to recommend the company during a time of turbulence.</p>
+                <p>So the drop in the score tells me that people <span class="highlight">answered the question honestly</span>: eNPS reflected the real situation, not a rosy picture. If everyone had only given fives, that would have been a signal that eNPS isn't working as a tool.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Question 3 -->
+    <div class="page" data-page="3">
+        <div class="card">
+            <div class="page-indicator">3 / 10</div>
+            <div class="question-number">3</div>
+            <div class="question-text">Only 5% anonymous responses—is that a lot or a little?</div>
+            <div class="answer-text">
+                <p>— Generally, in the IT industry, surveys like this are anonymous by default. We've always conducted them non-anonymously so that we could work constructively with the feedback: come to a specific person, discuss concerns, and improve the situation in each individual case.</p>
+                <p>But in 2025, against the backdrop of frozen salary increases and benefits, it seemed important to me to give people the option to speak up anonymously.</p>
+                <p>In reality, only <span class="highlight">6 out of 115</span> answers were anonymous. I think that's not much.</p>
+                <div class="callout">For me, this experience confirmed that we have a <span class="highlight">generally healthy culture</span>, because even in difficult times, the absolute majority feels comfortable sharing their opinions openly.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4: Question 4 -->
+    <div class="page" data-page="4">
+        <div class="card">
+            <div class="page-indicator">4 / 10</div>
+            <div class="question-number">4</div>
+            <div class="question-text">Pay—the drop is less than 0.3 points. How do you assess this indicator given the turbulent 2025?</div>
+            <div class="answer-text">
+                <p>In the chart, we see a comparison only within two years. But from surveys from even earlier years, I know that this trend didn't appear all of a sudden. Satisfaction with pay was declining even in stable years, very gradually though. I'm sharing the exact numbers below.</p>
+
+                <div class="chart-container">
+                    <div class="chart-title">2025 vs 2024 Comparison</div>
+                    <div class="comparison-chart">
+                        <div class="comparison-item">
+                            <div class="comparison-bars">
+                                <div class="comp-bar y2025" style="height: 82%;">4.11</div>
+                                <div class="comp-bar y2024" style="height: 88%;">4.39</div>
+                            </div>
+                            <div class="comparison-label">Pay</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-bars">
+                                <div class="comp-bar y2025" style="height: 94%;">4.70</div>
+                                <div class="comp-bar y2024" style="height: 91%;">4.56</div>
+                            </div>
+                            <div class="comparison-label">Tasks</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-bars">
+                                <div class="comp-bar y2025" style="height: 89%;">4.43</div>
+                                <div class="comp-bar y2024" style="height: 89%;">4.47</div>
+                            </div>
+                            <div class="comparison-label">Growth</div>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-bars">
+                                <div class="comp-bar y2025" style="height: 93%;">4.65</div>
+                                <div class="comp-bar y2024" style="height: 92%;">4.61</div>
+                            </div>
+                            <div class="comparison-label">Process</div>
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-dot blue"></div> 2025</div>
+                        <div class="legend-item"><div class="legend-dot gray"></div> 2024</div>
+                    </div>
+                </div>
+
+                <div class="line-chart">
+                    <div class="line-chart-title">Pay Satisfaction Trend (2022-2025)</div>
+                    <div class="chart-grid">
+                        <div class="y-axis-labels">
+                            <span>5.0</span>
+                            <span>4.5</span>
+                            <span>4.0</span>
+                        </div>
+                        <div class="line-path">
+                            <svg class="line-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#007AFF;stop-opacity:1" />
+                                        <stop offset="75%" style="stop-color:#007AFF;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#FF492C;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#007AFF;stop-opacity:0.2" />
+                                        <stop offset="100%" style="stop-color:#007AFF;stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Area fill -->
+                                <path d="M 0,56 L 33,58 L 67,61 L 100,89 L 100,100 L 0,100 Z" 
+                                      fill="url(#areaGradient)" />
+                                <!-- Line -->
+                                <path d="M 0,56 L 33,58 L 67,61 L 100,89" 
+                                      stroke="url(#lineGradient)" 
+                                      stroke-width="0.8" 
+                                      fill="none" 
+                                      stroke-linecap="round" 
+                                      stroke-linejoin="round" />
+                            </svg>
+                            <div class="data-points">
+                                <div class="data-point" style="left: 0%; bottom: 44%;">
+                                    <div class="data-label">4.44</div>
+                                </div>
+                                <div class="data-point" style="left: 33%; bottom: 42%;">
+                                    <div class="data-label">4.42</div>
+                                </div>
+                                <div class="data-point" style="left: 67%; bottom: 39%;">
+                                    <div class="data-label">4.39</div>
+                                </div>
+                                <div class="data-point negative" style="left: 100%; bottom: 11%;">
+                                    <div class="data-label negative">4.11</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x-axis-labels">
+                        <span class="x-label">2022</span>
+                        <span class="x-label">2023</span>
+                        <span class="x-label">2024</span>
+                        <span class="x-label">2025</span>
+                    </div>
+                </div>
+
+                <p>I also want to note that it was specifically in 2025 that we started promoting eNPS as the tool through which people share feedback about compensation satisfaction. In previous years, this topic was more often connected to performance reviews, but in 2025, eNPS became <span class="highlight">the main channel for financial feedback</span>. I think the noticeable drop in this indicator over the past year is partly due to this as well.</p>
+                <p>I didn't have specific numerical expectations for 2025. I don't treat eNPS like a precise measuring instrument, but more like a <span class="highlight">compass</span>: it shows direction and dynamics, but doesn't give micro-precision.</p>
+                <p>The numbers show that in the long-term dynamics, the downward trend continues, and the drop in 2025 can be considered an objective reaction to the freeze on benefits and salary increases.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5: Question 5 -->
+    <div class="page" data-page="5">
+        <div class="card">
+            <div class="page-indicator">5 / 10</div>
+            <div class="question-number">5</div>
+            <div class="question-text">But at the same time, the percentage of satisfaction with tasks actually increased. Why?</div>
+            <div class="answer-text">
+                <p>I connect this to a broader context. The world and the market as a whole have changed; not just our company and not just the localization industry got "shaken up." Perhaps, observing how things are going for others, we simply started to cherish more what we have.</p>
+                <div class="callout">We managed to build a pretty healthy system: negativity doesn't accumulate, problems get discussed, solutions are found.</div>
+                <p>I also know this: the growth of this indicator was definitely influenced by how we, together with team leads and mentors in previous years, worked with signals when people weren't satisfied with their tasks.</p>
+                <p>At the end of last year, I conducted a survey about how eNPS works, and to the question "Do you feel that your eNPS feedback has ever helped improve your work experience or any processes at Alconost?" three-quarters of people—<span class="highlight">77%</span>—noted a positive effect.</p>
+                <p>I see that we've managed to build a pretty <span class="highlight">healthy system</span>, including thanks to signals from eNPS, where tough things are discussed and resolved—taking into account the interests of each specific Alconostian.</p>
+                <p>This is a constructive approach, thanks to which negativity doesn't accumulate, problems get discussed, and solutions are found. And in the end, despite external factors, we remain healthy and motivated inside.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 6: Question 6 -->
+    <div class="page" data-page="6">
+        <div class="card">
+            <div class="page-indicator">6 / 10</div>
+            <div class="question-number">6</div>
+            <div class="question-text">When it comes to processes at the company, it's striking that a whole 15 ratings are in the "red zone." What's the reason here?</div>
+            <div class="answer-text">
+                <p>— One of the reasons is that throughout the year there were slowdowns in App's performance. And this is a tool that most respondents work with on a daily basis.</p>
+                <p>By the end of the year, App's performance speed improved noticeably, but since our survey reflects dynamics over the entire year—I think this factor had an impact. I want to thank the App team for their work—even though App has a small team, they're doing their absolute best to satisfy everyone's requests at Alconost.</p>
+
+                <div class="chart-container">
+                    <div class="chart-title">Company Processes Estimation</div>
+                    <div class="progress-chart">
+                        <div class="progress-segment high" style="flex: 80;">80</div>
+                        <div class="progress-segment med" style="flex: 20;">20</div>
+                        <div class="progress-segment low" style="flex: 15;">15</div>
+                    </div>
+                    <div class="progress-labels">
+                        <div class="progress-label"><div class="dot" style="background: #00BF56;"></div> High (4-5)</div>
+                        <div class="progress-label"><div class="dot" style="background: #FFBF42;"></div> Med (3)</div>
+                        <div class="progress-label"><div class="dot" style="background: #FF492C;"></div> Low (1-2)</div>
+                    </div>
+                </div>
+
+                <div class="callout">By the end of the year, App's performance speed improved noticeably, thanks to the App team.</div>
+                <p>Plus—both for us and in the market in general—new tools and services useful for work are constantly appearing. By the time people master one thing, something new and different has already appeared—you can't always keep up with the updates, and this can also create tension. It's that <span class="highlight">Fear of Missing Out</span>.</p>
+                <p>And, of course, team compression in 2025 added workload for everyone—especially loc. managers, marketers, and salespeople. Some processes had to be reassembled and restructured on the fly. Guys, you all are absolutely incredible for <span class="highlight">doing your best despite everything</span>—thank you, thank you, I never get tired of saying it.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 7: Question 7 -->
+    <div class="page" data-page="7">
+        <div class="card">
+            <div class="page-indicator">7 / 10</div>
+            <div class="question-number">7</div>
+            <div class="question-text">Vendor managers have the lowest ratings for compensation (3.5) and tasks (4). Why?</div>
+            <div class="answer-text">
+                <p>— The vendor managers department <span class="highlight">changed drastically</span> in 2025. This team was reassembled in terms of people, processes, and even essence—they got new tasks and areas of responsibility.</p>
+
+                <div class="charts-grid">
+                    <div class="chart-box">
+                        <div class="chart-box-title">Compensation & Benefits</div>
+                        <div class="v-bar-chart">
+                            <div class="v-bar-y-labels">
+                                <span>5</span>
+                                <span>4</span>
+                                <span>3</span>
+                                <span>2</span>
+                                <span>1</span>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-1" style="height: 79.5%;">
+                                    <span class="v-bar-value">4.18</span>
+                                    <span class="v-bar-label">loc</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-2" style="height: 71.5%;">
+                                    <span class="v-bar-value">3.86</span>
+                                    <span class="v-bar-label">marketing</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-3" style="height: 79.25%;">
+                                    <span class="v-bar-value">4.17</span>
+                                    <span class="v-bar-label">sales</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-4" style="height: 77.5%;">
+                                    <span class="v-bar-value">4.1</span>
+                                    <span class="v-bar-label">products</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-5" style="height: 89.25%;">
+                                    <span class="v-bar-value">4.57</span>
+                                    <span class="v-bar-label">video</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-6" style="height: 62.5%;">
+                                    <span class="v-bar-value">3.5</span>
+                                    <span class="v-bar-label">vendor</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-7" style="height: 100%;">
+                                    <span class="v-bar-value">5</span>
+                                    <span class="v-bar-label">hr</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-8" style="height: 83.25%;">
+                                    <span class="v-bar-value">4.33</span>
+                                    <span class="v-bar-label">bod</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-box">
+                        <div class="chart-box-title">Tasks & Work Interest</div>
+                        <div class="v-bar-chart">
+                            <div class="v-bar-y-labels">
+                                <span>5</span>
+                                <span>4</span>
+                                <span>3</span>
+                                <span>2</span>
+                                <span>1</span>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-1" style="height: 94.75%;">
+                                    <span class="v-bar-value">4.79</span>
+                                    <span class="v-bar-label">loc</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-2" style="height: 94%;">
+                                    <span class="v-bar-value">4.76</span>
+                                    <span class="v-bar-label">marketing</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-3" style="height: 90.25%;">
+                                    <span class="v-bar-value">4.61</span>
+                                    <span class="v-bar-label">sales</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-4" style="height: 95%;">
+                                    <span class="v-bar-value">4.8</span>
+                                    <span class="v-bar-label">products</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-5" style="height: 92.75%;">
+                                    <span class="v-bar-value">4.71</span>
+                                    <span class="v-bar-label">video</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-6" style="height: 75%;">
+                                    <span class="v-bar-value">4</span>
+                                    <span class="v-bar-label">vendor</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-7" style="height: 100%;">
+                                    <span class="v-bar-value">5</span>
+                                    <span class="v-bar-label">hr</span>
+                                </div>
+                            </div>
+                            <div class="v-bar-item">
+                                <div class="v-bar-column bar-shade-8" style="height: 91.75%;">
+                                    <span class="v-bar-value">4.67</span>
+                                    <span class="v-bar-label">bod</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px;">Initially the team shrank, but as the volume of tasks grew, we caught up to 2024 sizes. No other team at Alconost was so dramatically reassembled—I think this is the main factor why ratings from vendor managers differ so noticeably from ratings from other departments.</p>
+                <p>Of course, Dima @dv, the vendor team lead, and I aren't just looking at these numbers and drops, we're taking action. In 2025 we fruitfully communicated with the girls from @vendorsteam, discussed situations, and looked for compromises.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 8: Question 8 -->
+    <div class="page" data-page="8">
+        <div class="card">
+            <div class="page-indicator">8 / 10</div>
+            <div class="question-number">8</div>
+            <div class="question-text">The main value of the company for people is the team and culture—this was noted in the absolute majority of responses. What do you think about this?</div>
+            <div class="answer-text">
+                <p>— I think we initially developed a unique culture, and over time we also learned to hire good people. In 90–95% of cases, both HR and the hiring teams can see and feel very well whether a candidate has a <span class="highlight">culture fit</span>.</p>
+
+                <div class="charts-grid">
+                    <div class="chart-box">
+                        <div class="chart-box-title">What People Value Most</div>
+                        <div class="bubble-chart">
+                            <div class="bubble green" style="width: 170px; height: 170px; top: 48%; left: 38%;">
+                                <span class="bubble-value" style="font-size: 28px;">98</span>
+                                <span class="bubble-label" style="font-size: 8px;">Team & Culture</span>
+                            </div>
+                            <div class="bubble green" style="width: 100px; height: 100px; top: 20%; left: 78%;">
+                                <span class="bubble-value" style="font-size: 19px;">30</span>
+                                <span class="bubble-label" style="font-size: 7px;">Remote & Flexibility</span>
+                            </div>
+                            <div class="bubble green" style="width: 92px; height: 92px; top: 78%; left: 74%;">
+                                <span class="bubble-value" style="font-size: 17px;">26</span>
+                                <span class="bubble-label" style="font-size: 7px;">Growth & Tasks</span>
+                            </div>
+                            <div class="bubble green" style="width: 56px; height: 56px; top: 82%; left: 16%;">
+                                <span class="bubble-value" style="font-size: 13px;">8</span>
+                                <span class="bubble-label" style="font-size: 5.5px;">Processes & Org</span>
+                            </div>
+                            <div class="bubble green" style="width: 44px; height: 44px; top: 18%; left: 13%;">
+                                <span class="bubble-value" style="font-size: 12px;">4</span>
+                                <span class="bubble-label" style="font-size: 5.5px;">Management</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-box">
+                        <div class="chart-box-title">Improvement Areas</div>
+                        <div class="bubble-chart">
+                            <div class="bubble red" style="width: 130px; height: 130px; top: 48%; left: 34%;">
+                                <span class="bubble-value" style="font-size: 23px;">15</span>
+                                <span class="bubble-label" style="font-size: 7px;">Processes & Structure</span>
+                            </div>
+                            <div class="bubble red" style="width: 102px; height: 102px; top: 22%; left: 74%;">
+                                <span class="bubble-value" style="font-size: 19px;">9</span>
+                                <span class="bubble-label" style="font-size: 7px;">Compensation</span>
+                            </div>
+                            <div class="bubble red" style="width: 84px; height: 84px; top: 76%; left: 72%;">
+                                <span class="bubble-value" style="font-size: 16px;">6</span>
+                                <span class="bubble-label" style="font-size: 6px;">Workload & Balance</span>
+                            </div>
+                            <div class="bubble red" style="width: 68px; height: 68px; top: 80%; left: 16%;">
+                                <span class="bubble-value" style="font-size: 13px;">4</span>
+                                <span class="bubble-label" style="font-size: 6px;">Teambuilding</span>
+                            </div>
+                            <div class="bubble red" style="width: 68px; height: 68px; top: 16%; left: 18%;">
+                                <span class="bubble-value" style="font-size: 13px;">4</span>
+                                <span class="bubble-label" style="font-size: 6px;">Career Growth</span>
+                            </div>
+                            <div class="bubble red" style="width: 50px; height: 50px; top: 48%; left: 88%;">
+                                <span class="bubble-value" style="font-size: 11px;">2</span>
+                                <span class="bubble-label" style="font-size: 5.5px;">Tools & Tech</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px;">And the market itself is changing noticeably too. The era when IT companies competed with offices, cookies, and latte syrups is gone. After all, all of that is just bells and whistles—they don't affect job satisfaction. Much more important are a healthy atmosphere, team, and culture. We've always stood out in this way and haven't sold ourselves through bonuses. Our advantages are culture, team, tasks, and how work is organized within.</p>
+                <div class="callout">You can attract people to a company with flexible schedules and remote work, but what makes people want to stay in a company—that's precisely team and culture.</div>
+                <p>We're consistent in this: we communicate culture in job postings, at interviews, in communication with candidates. And we regularly get feedback that people accept offers specifically because of the culture. This is our <span class="highlight">strongest positioning</span>.</p>
+                <p>Culture is hard to formalize, but it's deeply embedded. So much so that after 10–15 minutes of talking with a person from a different culture, it's already clear whether they have the similar spirit or not :)</p>
+                <p>Here's what's also interesting about the gap between the two top points in "What people value most": <span class="highlight">98 responses</span> about team and culture, and only 30 about remote & flexibility. I think it's because remote work, flexible schedules, bonuses—these are things that can attract a candidate. But what makes people want to stay at a company—that's a strong culture and a good team.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 9: Question 9 -->
+    <div class="page" data-page="9">
+        <div class="card">
+            <div class="page-indicator">9 / 10</div>
+            <div class="question-number">9</div>
+            <div class="question-text">Your video was recorded on January 4th at 10:56 PM. Why are you working on holidays at night?</div>
+            <div class="answer-text">
+                <p>I'm a pretty creative person, and that part of me lives on its own schedule—I don't know how to tame my own inspiration. If it came on January 4th at 10 PM—well, who am I to argue with it?</p>
+
+                <div style="text-align: center; margin: 24px 0;">
+                    <div style="display: inline-block; background: #1F1F1F; border-radius: 12px; padding: 16px 32px; font-family: 'IBM Plex Mono', monospace; color: #D6D6D6; font-size: 24px;">
+                        Sun Jan 4 &nbsp;<span style="color: #B6CDFF; font-weight: 600;">22:56</span>
+                    </div>
+                </div>
+
+                <p>When something lights me up, I follow that fire. <span class="highlight">That's not burnout — it's fuel.</span></p>
+                <div class="callout">Following the fire and burning out at work are different, completely different things.</div>
+                <p>At the same time, my <span class="highlight">work-life balance</span> doesn't suffer. I clearly understand what I can do, when, and how much. And if I feel tired from creative evenings like these, I'll not keep doing the same. But this is personally how it works for me, you don't have to follow my example at all—after all, everyone has their own biorhythms and their own schedule of inspiration surges.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 10: Question 10 -->
+    <div class="page" data-page="10">
+        <div class="card">
+            <div class="page-indicator">10 / 10</div>
+            <div class="question-number">10</div>
+            <div class="question-text">Your overall impression of eNPS-2025? Main goals for HR based on the results?</div>
+            <div class="answer-text">
+                <p>The eNPS results overall match reality. Even considering that not everyone fills out the survey and we now send out the questionnaire a bit less frequently—I see that our <span class="highlight">compass is working</span>.</p>
+                <p>The most unexpected thing for me personally was the result of the experiment with the anonymous option. On one hand, I didn't get the effect I expected. On the other hand—if the anonymous option isn't in demand, then we really don't need it that much after all.</p>
+                <div class="callout">I'm all for sincere and constructive feedback not only in eNPS, but in daily work too.</div>
+                <p>This experiment became an important reference point for 2026. My main goal is for us to learn to give each other <span class="highlight">honest and constructive feedback</span> not only through eNPS, but in general.</p>
+                <p>A healthy culture isn't about staying silent or having discussions in the hallways, but about open dialogue and the ability to speak up with the desire to make things better. I'd like all of us—without exception—to learn this: both those who give feedback and those who receive it. This is about our <span class="highlight">collective growth</span> as a team and as a company.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="dots" id="dots"></div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changePage(-1)">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="nav-btn" id="nextBtn" onclick="changePage(1)">
+            <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+        </button>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const totalPages = 11;
+
+        const dotsContainer = document.getElementById('dots');
+        for (let i = 0; i < totalPages; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToPage(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        function updateUI() {
+            document.querySelectorAll('.page').forEach((page, index) => {
+                page.classList.toggle('active', index === currentPage);
+            });
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentPage);
+            });
+            document.getElementById('progress').style.width = ((currentPage + 1) / totalPages * 100) + '%';
+            document.getElementById('prevBtn').disabled = currentPage === 0;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages - 1;
+            
+            // Reset scroll position when switching pages
+            const activePage = document.querySelector('.page.active');
+            if (activePage) {
+                activePage.scrollTo({ top: 0, behavior: 'instant' });
+            }
+        }
+
+        function changePage(delta) {
+            const newPage = currentPage + delta;
+            if (newPage >= 0 && newPage < totalPages) {
+                currentPage = newPage;
+                updateUI();
+            }
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            updateUI();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changePage(1);
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changePage(-1);
+        });
+
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+        document.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) changePage(diff > 0 ? 1 : -1);
+        });
+
+        updateUI();
+
+        function switchLang(lang) {
+            document.body.classList.toggle('ru', lang === 'ru');
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+            });
+        }
+    </script>
+</body>
+</html>
